@@ -1,0 +1,105 @@
+{
+  "target_host": "127.0.0.1",
+  "scan_timestamp": "2026-11-13T11:28:59.948152",
+  "total_ports_scanned": 9,
+  "open_port_count": 2,
+  "closed_port_count": 7,
+  "open_ports": [
+    22,
+    80
+  ],
+  "closed_ports": [
+    443,
+    3306,
+    5432,
+    6379,
+    8080,
+    8443,
+    27017
+  ],
+  "exposure_rating": "LOW",
+  "findings": [
+    {
+      "port": 22,
+      "state": "OPEN",
+      "service": "SSH",
+      "tier": "Remote Management",
+      "risk": "MEDIUM",
+      "banner": "OpenSSH"
+    },
+    {
+      "port": 80,
+      "state": "OPEN",
+      "service": "HTTP",
+      "tier": "Web Presentation",
+      "risk": "LOW",
+      "banner": "HTTP"
+    },
+    {
+      "port": 443,
+      "state": "CLOSED",
+      "service": "HTTPS",
+      "tier": "Secure Web Presentation",
+      "risk": "NONE",
+      "banner": null
+    },
+    {
+      "port": 3306,
+      "state": "CLOSED",
+      "service": "MySQL",
+      "tier": "Data Persistence",
+      "risk": "NONE",
+      "banner": null
+    },
+    {
+      "port": 5432,
+      "state": "CLOSED",
+      "service": "PostgreSQL",
+      "tier": "Data Persistence",
+      "risk": "NONE",
+      "banner": null
+    },
+    {
+      "port": 6379,
+      "state": "CLOSED",
+      "service": "Redis",
+      "tier": "In-Memory Cache",
+      "risk": "NONE",
+      "banner": null
+    },
+    {
+      "port": 8080,
+      "state": "CLOSED",
+      "service": "HTTP-Proxy / Dev-Server",
+      "tier": "Application Services",
+      "risk": "NONE",
+      "banner": null
+    },
+    {
+      "port": 8443,
+      "state": "CLOSED",
+      "service": "HTTPS-Alt",
+      "tier": "Application Services",
+      "risk": "NONE",
+      "banner": null
+    },
+    {
+      "port": 27017,
+      "state": "CLOSED",
+      "service": "MongoDB",
+      "tier": "Data Persistence",
+      "risk": "NONE",
+      "banner": null
+    }
+  ],
+  "topology_mapping": {
+    "Presentation Tier (Web Frontend)": [
+      "Port 80/TCP (HTTP)"
+    ],
+    "Application Tier (Microservices / APIs)": [],
+    "Data Persistence Tier (Databases & Caches)": [],
+    "Management Tier (Administrative Access)": [
+      "Port 22/TCP (SSH)"
+    ]
+  }
+}

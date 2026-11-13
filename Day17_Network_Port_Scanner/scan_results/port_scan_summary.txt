@@ -1,0 +1,38 @@
+================================================================================
+     SQROCK IT SOLUTIONS - NETWORK PORT & TOPOLOGY AUDIT REPORT
+================================================================================
+Target Host Audited  : 127.0.0.1
+Scan Timestamp       : 2026-11-13T11:28:59.948152
+Total Ports Scanned  : 9
+Discovered Open      : 2
+Discovered Closed    : 7
+Exposure Risk Rating : LOW
+--------------------------------------------------------------------------------
+
+--- 1. ACTIVE OPEN SOCKET FINDINGS ---
+[!] Port 22/TCP : SSH [MEDIUM RISK]
+    Architecture Tier: Remote Management
+    Service Banner   : OpenSSH
+
+[!] Port 80/TCP : HTTP [LOW RISK]
+    Architecture Tier: Web Presentation
+    Service Banner   : HTTP
+
+--- 2. EXPOSED NETWORK TOPOLOGY SCHEMA ---
+[Presentation Tier (Web Frontend)]
+  └── Port 80/TCP (HTTP)
+
+[Application Tier (Microservices / APIs)]
+  └── (No open services discovered in this tier)
+
+[Data Persistence Tier (Databases & Caches)]
+  └── (No open services discovered in this tier)
+
+[Management Tier (Administrative Access)]
+  └── Port 22/TCP (SSH)
+
+--------------------------------------------------------------------------------
+DEFENSIVE REMEDIATION GUIDANCE:
+1. Database Tier: Bind PostgreSQL (5432) and MySQL (3306) strictly to 127.0.0.1 or internal Docker networks.
+2. Management Tier: Restrict SSH (22) via iptables / Security Groups; require cryptographic keys.
+3. Application Tier: Disallow direct exposure of development console ports (8080) on public network interfaces.

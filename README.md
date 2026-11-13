@@ -60,7 +60,7 @@ This unified monorepo houses all 15 advanced security engineering packages devel
 | Day | Focus Area / Project Deliverable | Directory | Tests | PDF Report | Status |
 |:---:|:---|:---|:---:|:---:|:---:|
 | **16** | **HTTP Security Header Analysis** | [`Day16_HTTP_Security_Headers/`](Day16_HTTP_Security_Headers/) | **6/6 Passed** | [7-Page Report](reports/Day16_HTTP_Security_Header_Report_Sqrock_MdPeerSiddiqui.pdf) | **COMPLETED** |
-| **17** | **Local Network Port & Service Scanning** | `Day17_Network_Port_Scanner/` | Pending | 7-Page Report | Queue |
+| **17** | **Local Network Port & Service Scanning** | [`Day17_Network_Port_Scanner/`](Day17_Network_Port_Scanner/) | **6/6 Passed** | [7-Page Report](reports/Day17_Network_Port_Scan_Report_Sqrock_MdPeerSiddiqui.pdf) | **COMPLETED** |
 | **18** | **SQL Injection (SQLi) Log Detection** | `Day18_SQLi_Log_Detection/` | Pending | 7-Page Report | Queue |
 | **19** | **Docker Container Misconfiguration Scanner**| `Day19_Docker_Misconfiguration_Scanner/` | Pending | 7-Page Report | Queue |
 | **20** | **Web Directory Brute-Force Simulation** | `Day20_Web_Directory_Fuzzer/` | Pending | 7-Page Report | Queue |

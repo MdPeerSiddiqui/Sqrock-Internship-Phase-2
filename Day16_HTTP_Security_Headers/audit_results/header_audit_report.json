@@ -1,0 +1,89 @@
+{
+  "target_url": "http://localhost:8000",
+  "audit_timestamp": "2026-11-13T10:46:50.976953",
+  "posture_score": 50,
+  "grade": "D",
+  "configured_count": 3,
+  "missing_count": 3,
+  "findings": [
+    {
+      "header": "Strict-Transport-Security",
+      "status": "CONFIGURED",
+      "value": "max-age=31536000; includeSubDomains",
+      "weight_awarded": 25,
+      "max_weight": 25,
+      "category": "Cryptographic Transport",
+      "description": "Enforces HTTPS connections and neutralizes SSL-stripping / man-in-the-middle attacks.",
+      "best_practice": "max-age=31536000; includeSubDomains; preload",
+      "warnings": [],
+      "recommendation": "Header correctly deployed in accordance with baseline specification."
+    },
+    {
+      "header": "Content-Security-Policy",
+      "status": "VULNERABLE (MISSING)",
+      "value": null,
+      "weight_awarded": 0,
+      "max_weight": 30,
+      "category": "Injection Mitigation",
+      "description": "Restricts execution of unauthorized scripts, objects, and styles; neutralizes XSS & data exfiltration.",
+      "best_practice": "default-src 'self'; script-src 'self'; object-src 'none';",
+      "warnings": [
+        "Missing critical header: Content-Security-Policy"
+      ],
+      "recommendation": "Enforce Content-Security-Policy: default-src 'self'; script-src 'self'; object-src 'none';"
+    },
+    {
+      "header": "X-Frame-Options",
+      "status": "CONFIGURED",
+      "value": "DENY",
+      "weight_awarded": 15,
+      "max_weight": 15,
+      "category": "UI Redressing Mitigation",
+      "description": "Prevents unauthorized embedding in iframes, defending against Clickjacking.",
+      "best_practice": "DENY or SAMEORIGIN",
+      "warnings": [],
+      "recommendation": "Header correctly deployed in accordance with baseline specification."
+    },
+    {
+      "header": "X-Content-Type-Options",
+      "status": "CONFIGURED",
+      "value": "nosniff",
+      "weight_awarded": 10,
+      "max_weight": 10,
+      "category": "MIME-Type Protection",
+      "description": "Instructs browser to adhere strictly to MIME types, preventing MIME-sniffing exploits.",
+      "best_practice": "nosniff",
+      "warnings": [],
+      "recommendation": "Header correctly deployed in accordance with baseline specification."
+    },
+    {
+      "header": "Referrer-Policy",
+      "status": "VULNERABLE (MISSING)",
+      "value": null,
+      "weight_awarded": 0,
+      "max_weight": 10,
+      "category": "Information Disclosure",
+      "description": "Controls referrer information passed in HTTP request headers during navigation.",
+      "best_practice": "strict-origin-when-cross-origin or no-referrer",
+      "warnings": [
+        "Missing critical header: Referrer-Policy"
+      ],
+      "recommendation": "Enforce Referrer-Policy: strict-origin-when-cross-origin or no-referrer"
+    },
+    {
+      "header": "Permissions-Policy",
+      "status": "VULNERABLE (MISSING)",
+      "value": null,
+      "weight_awarded": 0,
+      "max_weight": 10,
+      "category": "Browser Feature Isolation",
+      "description": "Enables or disables browser features and hardware APIs (camera, microphone, geolocation).",
+      "best_practice": "geolocation=(), microphone=(), camera=()",
+      "warnings": [
+        "Missing critical header: Permissions-Policy"
+      ],
+      "recommendation": "Enforce Permissions-Policy: geolocation=(), microphone=(), camera=()"
+    }
+  ],
+  "information_disclosure_headers": {}
+}

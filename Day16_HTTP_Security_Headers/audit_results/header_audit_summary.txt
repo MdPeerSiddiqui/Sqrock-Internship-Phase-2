@@ -1,0 +1,48 @@
+================================================================================
+     SQROCK IT SOLUTIONS - HTTP SECURITY HEADER POSTURE AUDIT REPORT
+================================================================================
+Target Audited       : http://localhost:8000
+Audit Timestamp      : 2026-11-13T10:46:50.976953
+Security Score       : 50/100
+Assigned Grade       : D
+Configured Headers   : 3/6
+Missing (Vulnerable) : 3/6
+--------------------------------------------------------------------------------
+
+--- DETAILED HEADER EVALUATIONS ---
+[CONFIGURED] Strict-Transport-Security (Cryptographic Transport)
+  Observed Value : max-age=31536000; includeSubDomains
+  Score Awarded  : 25/25 pts
+  Best Practice  : max-age=31536000; includeSubDomains; preload
+  Remediation    : Header correctly deployed in accordance with baseline specification.
+
+[VULNERABLE (MISSING)] Content-Security-Policy (Injection Mitigation)
+  Observed Value : NONE (Header absent)
+  Score Awarded  : 0/30 pts
+  Best Practice  : default-src 'self'; script-src 'self'; object-src 'none';
+  Remediation    : Enforce Content-Security-Policy: default-src 'self'; script-src 'self'; object-src 'none';
+
+[CONFIGURED] X-Frame-Options (UI Redressing Mitigation)
+  Observed Value : DENY
+  Score Awarded  : 15/15 pts
+  Best Practice  : DENY or SAMEORIGIN
+  Remediation    : Header correctly deployed in accordance with baseline specification.
+
+[CONFIGURED] X-Content-Type-Options (MIME-Type Protection)
+  Observed Value : nosniff
+  Score Awarded  : 10/10 pts
+  Best Practice  : nosniff
+  Remediation    : Header correctly deployed in accordance with baseline specification.
+
+[VULNERABLE (MISSING)] Referrer-Policy (Information Disclosure)
+  Observed Value : NONE (Header absent)
+  Score Awarded  : 0/10 pts
+  Best Practice  : strict-origin-when-cross-origin or no-referrer
+  Remediation    : Enforce Referrer-Policy: strict-origin-when-cross-origin or no-referrer
+
+[VULNERABLE (MISSING)] Permissions-Policy (Browser Feature Isolation)
+  Observed Value : NONE (Header absent)
+  Score Awarded  : 0/10 pts
+  Best Practice  : geolocation=(), microphone=(), camera=()
+  Remediation    : Enforce Permissions-Policy: geolocation=(), microphone=(), camera=()
+

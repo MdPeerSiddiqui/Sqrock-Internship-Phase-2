@@ -1,0 +1,151 @@
+{
+    "metadata": {
+        "engine": "PEER'S Web Directory Brute-Force & Content Discovery Fuzzing Engine v2.0",
+        "author": "Mohammed Peer Siddiqui",
+        "company": "Sqrock IT Solutions",
+        "target_url": "http://127.0.0.1:8080",
+        "timestamp": "2026-11-17T10:32:27.877681",
+        "standards": [
+            "OWASP Top 10 A01:2021",
+            "OWASP Top 10 A05:2021"
+        ]
+    },
+    "metrics": {
+        "total_requests": 16,
+        "status_200": 6,
+        "status_403": 6,
+        "status_401": 2,
+        "status_30x": 0,
+        "status_404": 2,
+        "critical_exposures": 2
+    },
+    "discovered_assets_count": 14,
+    "findings": [
+        {
+            "path": "/.env",
+            "url": "http://127.0.0.1:8080/.env",
+            "status_code": 200,
+            "content_length": 38,
+            "severity": "CRITICAL",
+            "description": "Critical configuration or source artifact exposed to public internet.",
+            "sample": "DB_HOST=10.0.0.4\nDB_PASS=SuperSecretKey123!"
+        },
+        {
+            "path": "/backup.sql",
+            "url": "http://127.0.0.1:8080/backup.sql",
+            "status_code": 200,
+            "content_length": 54300,
+            "severity": "CRITICAL",
+            "description": "Critical configuration or source artifact exposed to public internet.",
+            "sample": "-- MySQL Database Dump v8.0"
+        },
+        {
+            "path": "/admin",
+            "url": "http://127.0.0.1:8080/admin",
+            "status_code": 403,
+            "content_length": 145,
+            "severity": "HIGH",
+            "description": "Resource exists on filesystem but access is forbidden by ACL/web server configuration.",
+            "sample": "Forbidden - Administrative Access Restricted"
+        },
+        {
+            "path": "/api/v1",
+            "url": "http://127.0.0.1:8080/api/v1",
+            "status_code": 200,
+            "content_length": 420,
+            "severity": "HIGH",
+            "description": "Sensitive administrative or API interface exposed without access control.",
+            "sample": "API Gateway Index"
+        },
+        {
+            "path": "/.git",
+            "url": "http://127.0.0.1:8080/.git",
+            "status_code": 403,
+            "content_length": 168,
+            "severity": "HIGH",
+            "description": "Resource exists on filesystem but access is forbidden by ACL/web server configuration.",
+            "sample": "Directory Listing Prohibited"
+        },
+        {
+            "path": "/config.php",
+            "url": "http://127.0.0.1:8080/config.php",
+            "status_code": 403,
+            "content_length": 95,
+            "severity": "HIGH",
+            "description": "Resource exists on filesystem but access is forbidden by ACL/web server configuration.",
+            "sample": "Access Denied"
+        },
+        {
+            "path": "/server-status",
+            "url": "http://127.0.0.1:8080/server-status",
+            "status_code": 403,
+            "content_length": 112,
+            "severity": "HIGH",
+            "description": "Resource exists on filesystem but access is forbidden by ACL/web server configuration.",
+            "sample": "Apache Server Status Restricted"
+        },
+        {
+            "path": "/phpmyadmin",
+            "url": "http://127.0.0.1:8080/phpmyadmin",
+            "status_code": 403,
+            "content_length": 130,
+            "severity": "HIGH",
+            "description": "Resource exists on filesystem but access is forbidden by ACL/web server configuration.",
+            "sample": "Access Forbidden"
+        },
+        {
+            "path": "/internal",
+            "url": "http://127.0.0.1:8080/internal",
+            "status_code": 403,
+            "content_length": 92,
+            "severity": "HIGH",
+            "description": "Resource exists on filesystem but access is forbidden by ACL/web server configuration.",
+            "sample": "Internal Network Only"
+        },
+        {
+            "path": "/dashboard",
+            "url": "http://127.0.0.1:8080/dashboard",
+            "status_code": 401,
+            "content_length": 210,
+            "severity": "MEDIUM",
+            "description": "Protected endpoint requiring basic/bearer authentication.",
+            "sample": "Unauthorized - Bearer Token Required"
+        },
+        {
+            "path": "/private",
+            "url": "http://127.0.0.1:8080/private",
+            "status_code": 401,
+            "content_length": 88,
+            "severity": "MEDIUM",
+            "description": "Protected endpoint requiring basic/bearer authentication.",
+            "sample": "Authorization Required"
+        },
+        {
+            "path": "/login",
+            "url": "http://127.0.0.1:8080/login",
+            "status_code": 200,
+            "content_length": 890,
+            "severity": "LOW",
+            "description": "Accessible public asset.",
+            "sample": "User Authentication Portal"
+        },
+        {
+            "path": "/robots.txt",
+            "url": "http://127.0.0.1:8080/robots.txt",
+            "status_code": 200,
+            "content_length": 52,
+            "severity": "LOW",
+            "description": "Accessible public asset.",
+            "sample": "User-agent: *\nDisallow: /admin\nDisallow: /private"
+        },
+        {
+            "path": "/uploads",
+            "url": "http://127.0.0.1:8080/uploads",
+            "status_code": 200,
+            "content_length": 312,
+            "severity": "LOW",
+            "description": "Accessible public asset.",
+            "sample": "Index of /uploads"
+        }
+    ]
+}

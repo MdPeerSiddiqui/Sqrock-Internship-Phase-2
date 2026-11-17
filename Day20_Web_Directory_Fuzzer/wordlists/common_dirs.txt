@@ -1,0 +1,16 @@
+admin
+login
+dashboard
+api/v1
+.env
+.git
+backup.sql
+config.php
+server-status
+robots.txt
+phpmyadmin
+uploads
+private
+internal
+test
+secret

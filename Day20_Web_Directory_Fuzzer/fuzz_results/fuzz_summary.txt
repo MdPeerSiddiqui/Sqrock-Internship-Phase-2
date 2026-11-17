@@ -1,0 +1,81 @@
+==========================================================================
+PEER'S WEB DIRECTORY BRUTE-FORCE DISCOVERY SUMMARY
+Differential HTTP Status Code Analysis & Asset Identification
+==========================================================================
+Target URL          : http://127.0.0.1:8080
+Scan Completed At   : 2026-11-17 10:32:27 UTC
+Total Probed Paths  : 16
+Identified Assets   : 14
+Critical Exposures  : 2
+==========================================================================
+
+[1] 200 - CRITICAL: /.env
+    Full URL    : http://127.0.0.1:8080/.env
+    Size (Bytes): 38
+    Impact      : Critical configuration or source artifact exposed to public internet.
+--------------------------------------------------------------------------
+[2] 200 - CRITICAL: /backup.sql
+    Full URL    : http://127.0.0.1:8080/backup.sql
+    Size (Bytes): 54300
+    Impact      : Critical configuration or source artifact exposed to public internet.
+--------------------------------------------------------------------------
+[3] 403 - HIGH: /admin
+    Full URL    : http://127.0.0.1:8080/admin
+    Size (Bytes): 145
+    Impact      : Resource exists on filesystem but access is forbidden by ACL/web server configuration.
+--------------------------------------------------------------------------
+[4] 200 - HIGH: /api/v1
+    Full URL    : http://127.0.0.1:8080/api/v1
+    Size (Bytes): 420
+    Impact      : Sensitive administrative or API interface exposed without access control.
+--------------------------------------------------------------------------
+[5] 403 - HIGH: /.git
+    Full URL    : http://127.0.0.1:8080/.git
+    Size (Bytes): 168
+    Impact      : Resource exists on filesystem but access is forbidden by ACL/web server configuration.
+--------------------------------------------------------------------------
+[6] 403 - HIGH: /config.php
+    Full URL    : http://127.0.0.1:8080/config.php
+    Size (Bytes): 95
+    Impact      : Resource exists on filesystem but access is forbidden by ACL/web server configuration.
+--------------------------------------------------------------------------
+[7] 403 - HIGH: /server-status
+    Full URL    : http://127.0.0.1:8080/server-status
+    Size (Bytes): 112
+    Impact      : Resource exists on filesystem but access is forbidden by ACL/web server configuration.
+--------------------------------------------------------------------------
+[8] 403 - HIGH: /phpmyadmin
+    Full URL    : http://127.0.0.1:8080/phpmyadmin
+    Size (Bytes): 130
+    Impact      : Resource exists on filesystem but access is forbidden by ACL/web server configuration.
+--------------------------------------------------------------------------
+[9] 403 - HIGH: /internal
+    Full URL    : http://127.0.0.1:8080/internal
+    Size (Bytes): 92
+    Impact      : Resource exists on filesystem but access is forbidden by ACL/web server configuration.
+--------------------------------------------------------------------------
+[10] 401 - MEDIUM: /dashboard
+    Full URL    : http://127.0.0.1:8080/dashboard
+    Size (Bytes): 210
+    Impact      : Protected endpoint requiring basic/bearer authentication.
+--------------------------------------------------------------------------
+[11] 401 - MEDIUM: /private
+    Full URL    : http://127.0.0.1:8080/private
+    Size (Bytes): 88
+    Impact      : Protected endpoint requiring basic/bearer authentication.
+--------------------------------------------------------------------------
+[12] 200 - LOW: /login
+    Full URL    : http://127.0.0.1:8080/login
+    Size (Bytes): 890
+    Impact      : Accessible public asset.
+--------------------------------------------------------------------------
+[13] 200 - LOW: /robots.txt
+    Full URL    : http://127.0.0.1:8080/robots.txt
+    Size (Bytes): 52
+    Impact      : Accessible public asset.
+--------------------------------------------------------------------------
+[14] 200 - LOW: /uploads
+    Full URL    : http://127.0.0.1:8080/uploads
+    Size (Bytes): 312
+    Impact      : Accessible public asset.
+--------------------------------------------------------------------------

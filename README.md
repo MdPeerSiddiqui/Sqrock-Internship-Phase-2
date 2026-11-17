@@ -64,7 +64,7 @@ This unified monorepo houses all 15 advanced security engineering packages devel
 | **18** | **SQL Injection (SQLi) Log Detection** | [`Day18_SQLi_Log_Detection/`](Day18_SQLi_Log_Detection/) | **6/6 Passed** | [7-Page Report](reports/Day18_SQLi_Log_Detection_Report_Sqrock_MdPeerSiddiqui.pdf) | **COMPLETED** |
 | **19** | **Docker Container Misconfiguration Scanner**| [`Day19_Docker_Misconfiguration_Scanner/`](Day19_Docker_Misconfiguration_Scanner/) | **6/6 Passed** | [7-Page Report](reports/Day19_Docker_Misconfiguration_Report_Sqrock_MdPeerSiddiqui.pdf) | **COMPLETED** |
 | **20** | **Web Directory Brute-Force Simulation** | [`Day20_Web_Directory_Fuzzer/`](Day20_Web_Directory_Fuzzer/) | **6/6 Passed** | [7-Page Report](reports/Day20_Web_Directory_Fuzzing_Report_Sqrock_MdPeerSiddiqui.pdf) | **COMPLETED** |
-| **21** | **XSS Payload Sanitizer** | `Day21_XSS_Payload_Sanitizer/` | Pending | 7-Page Report | Queue |
+| **21** | **XSS Payload Sanitizer** | [`Day21_XSS_Payload_Sanitizer/`](Day21_XSS_Payload_Sanitizer/) | **6/6 Passed** | [7-Page Report](reports/Day21_XSS_Sanitizer_Report_Sqrock_MdPeerSiddiqui.pdf) | **COMPLETED** |
 | **22** | **API Rate Limiting Token Bucket Logic** | `Day22_API_Rate_Limiter/` | Pending | 7-Page Report | Queue |
 | **23** | **Postgres Database Credential Auditing** | `Day23_Postgres_Credential_Auditor/` | Pending | 7-Page Report | Queue |
 | **24** | **Automated Threat Intel IP Blocking Pipeline**| `Day24_Threat_Intel_IP_Blocker/` | Pending | 7-Page Report | Queue |

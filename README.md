@@ -72,7 +72,7 @@ This unified monorepo houses all 15 advanced security engineering packages devel
 | **26** | **Custom Web Application Firewall (WAF)** | [`Day26_Custom_WAF_Engine/`](Day26_Custom_WAF_Engine/) | **6/6 Passed** | [7-Page Report](reports/Day26_Custom_WAF_Report_Sqrock_MdPeerSiddiqui.pdf) | **COMPLETED** |
 | **27** | **Automated Vulnerability Report Aggregator** | [`Day27_Vulnerability_Report_Aggregator/`](Day27_Vulnerability_Report_Aggregator/) | **6/6 Passed** | [7-Page Report](reports/Day27_Vulnerability_Aggregation_Report_Sqrock_MdPeerSiddiqui.pdf) | **COMPLETED** |
 | **28** | **SIEM Alert Trigger via Webhooks** | [`Day28_SIEM_Webhook_Automation/`](Day28_SIEM_Webhook_Automation/) | **6/6 Passed** | [7-Page Report](reports/Day28_SIEM_Webhook_Automation_Report_Sqrock_MdPeerSiddiqui.pdf) | **COMPLETED** |
-| **29** | **Incident Containment & Host Isolation** | `Day29_Incident_Host_Isolation/` | Pending | 7-Page Report | Queue |
+| **29** | **Incident Containment & Host Isolation** | [`Day29_Incident_Host_Isolation/`](Day29_Incident_Host_Isolation/) | **6/6 Passed** | [7-Page Report](reports/Day29_Host_Isolation_Report_Sqrock_MdPeerSiddiqui.pdf) | **COMPLETED** |
 | **30** | **CAPSTONE: Automated Web Vulnerability Scanner**| `Day30_Final_Web_Vuln_Scanner/` | Pending | 7-Page Report | Queue |
 
 ---

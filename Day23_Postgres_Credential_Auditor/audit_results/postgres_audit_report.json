@@ -1,0 +1,143 @@
+{
+    "metadata": {
+        "engine": "PEER'S PostgreSQL Database Credential & Configuration Auditor v2.0",
+        "author": "Mohammed Peer Siddiqui",
+        "company": "Sqrock IT Solutions",
+        "timestamp": "2026-11-17T10:45:20.300757",
+        "standards": [
+            "CIS PostgreSQL 15 Benchmark v1.0.0",
+            "NIST SP 800-53 AC-2 / IA-5"
+        ]
+    },
+    "metrics": {
+        "hba_rules_evaluated": 4,
+        "critical_hba_violations": 3,
+        "credentials_tested": 8,
+        "default_credentials_flagged": 8,
+        "weak_passwords_identified": 0
+    },
+    "hba_findings": [
+        {
+            "line": 3,
+            "raw_rule": "local   all             all                                     trust",
+            "type": "local",
+            "database": "all",
+            "user": "all",
+            "address": "local_socket",
+            "method": "trust",
+            "severity": "CRITICAL",
+            "description": "Allows unauthenticated connections without password check; complete security bypass.",
+            "remediation": "Replace with 'hostssl ... scram-sha-256' and restrict address to specific subnet CIDRs."
+        },
+        {
+            "line": 4,
+            "raw_rule": "host    all             all             0.0.0.0/0               trust",
+            "type": "host",
+            "database": "all",
+            "user": "all",
+            "address": "0.0.0.0/0",
+            "method": "trust",
+            "severity": "CRITICAL",
+            "description": "Allows unauthenticated connections without password check; complete security bypass. Furthermore, rule permits connections from entire global IP address space (0.0.0.0/0).",
+            "remediation": "Replace with 'hostssl ... scram-sha-256' and restrict address to specific subnet CIDRs."
+        },
+        {
+            "line": 5,
+            "raw_rule": "host    all             all             127.0.0.1/32            md5",
+            "type": "host",
+            "database": "all",
+            "user": "all",
+            "address": "127.0.0.1/32",
+            "method": "md5",
+            "severity": "MEDIUM",
+            "description": "Uses legacy MD5 hash vulnerable to rainbow table collisions and pass-the-hash attacks.",
+            "remediation": "Replace with 'hostssl ... scram-sha-256' and restrict address to specific subnet CIDRs."
+        },
+        {
+            "line": 6,
+            "raw_rule": "host    all             all             ::/0                    trust",
+            "type": "host",
+            "database": "all",
+            "user": "all",
+            "address": "::/0",
+            "method": "trust",
+            "severity": "CRITICAL",
+            "description": "Allows unauthenticated connections without password check; complete security bypass. Furthermore, rule permits connections from entire global IP address space (0.0.0.0/0).",
+            "remediation": "Replace with 'hostssl ... scram-sha-256' and restrict address to specific subnet CIDRs."
+        }
+    ],
+    "credential_findings": [
+        {
+            "username": "postgres",
+            "password_sample": "po****",
+            "entropy_bits": 37.6,
+            "severity": "CRITICAL",
+            "is_default": true,
+            "description": "Known default or trivial credential pair. Vulnerable to automated brute-force spray.",
+            "remediation": "Enforce minimum 16-character alphanumeric passphrase with SCRAM-SHA-256 hashing."
+        },
+        {
+            "username": "postgres",
+            "password_sample": "ro****",
+            "entropy_bits": 18.8,
+            "severity": "CRITICAL",
+            "is_default": true,
+            "description": "Known default or trivial credential pair. Vulnerable to automated brute-force spray.",
+            "remediation": "Enforce minimum 16-character alphanumeric passphrase with SCRAM-SHA-256 hashing."
+        },
+        {
+            "username": "postgres",
+            "password_sample": "ad****",
+            "entropy_bits": 23.5,
+            "severity": "CRITICAL",
+            "is_default": true,
+            "description": "Known default or trivial credential pair. Vulnerable to automated brute-force spray.",
+            "remediation": "Enforce minimum 16-character alphanumeric passphrase with SCRAM-SHA-256 hashing."
+        },
+        {
+            "username": "postgres",
+            "password_sample": "pa****",
+            "entropy_bits": 37.6,
+            "severity": "CRITICAL",
+            "is_default": true,
+            "description": "Known default or trivial credential pair. Vulnerable to automated brute-force spray.",
+            "remediation": "Enforce minimum 16-character alphanumeric passphrase with SCRAM-SHA-256 hashing."
+        },
+        {
+            "username": "postgres",
+            "password_sample": "12****",
+            "entropy_bits": 19.93,
+            "severity": "CRITICAL",
+            "is_default": true,
+            "description": "Known default or trivial credential pair. Vulnerable to automated brute-force spray.",
+            "remediation": "Enforce minimum 16-character alphanumeric passphrase with SCRAM-SHA-256 hashing."
+        },
+        {
+            "username": "app_user",
+            "password_sample": "ap****",
+            "entropy_bits": 46.86,
+            "severity": "CRITICAL",
+            "is_default": true,
+            "description": "Known default or trivial credential pair. Vulnerable to automated brute-force spray.",
+            "remediation": "Enforce minimum 16-character alphanumeric passphrase with SCRAM-SHA-256 hashing."
+        },
+        {
+            "username": "readonly",
+            "password_sample": "re****",
+            "entropy_bits": 37.6,
+            "severity": "CRITICAL",
+            "is_default": true,
+            "description": "Known default or trivial credential pair. Vulnerable to automated brute-force spray.",
+            "remediation": "Enforce minimum 16-character alphanumeric passphrase with SCRAM-SHA-256 hashing."
+        },
+        {
+            "username": "admin",
+            "password_sample": "ad****",
+            "entropy_bits": 23.5,
+            "severity": "CRITICAL",
+            "is_default": true,
+            "description": "Known default or trivial credential pair. Vulnerable to automated brute-force spray.",
+            "remediation": "Enforce minimum 16-character alphanumeric passphrase with SCRAM-SHA-256 hashing."
+        }
+    ]
+}

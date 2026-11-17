@@ -1,0 +1,49 @@
+==========================================================================
+PEER'S POSTGRESQL DATABASE SECURITY AUDIT SUMMARY
+CIS PostgreSQL 15 Benchmark & Default Credential Verification
+==========================================================================
+Generated At           : 2026-11-17 10:45:20 UTC
+HBA Rules Checked      : 4
+Critical HBA Issues    : 3
+Default Credentials    : 8
+==========================================================================
+
+CRITICAL HBA VIOLATIONS:
+Line 3: local   all             all                                     trust
+    Impact : Allows unauthenticated connections without password check; complete security bypass.
+    Fix    : Replace with 'hostssl ... scram-sha-256' and restrict address to specific subnet CIDRs.
+--------------------------------------------------------------------------
+Line 4: host    all             all             0.0.0.0/0               trust
+    Impact : Allows unauthenticated connections without password check; complete security bypass. Furthermore, rule permits connections from entire global IP address space (0.0.0.0/0).
+    Fix    : Replace with 'hostssl ... scram-sha-256' and restrict address to specific subnet CIDRs.
+--------------------------------------------------------------------------
+Line 6: host    all             all             ::/0                    trust
+    Impact : Allows unauthenticated connections without password check; complete security bypass. Furthermore, rule permits connections from entire global IP address space (0.0.0.0/0).
+    Fix    : Replace with 'hostssl ... scram-sha-256' and restrict address to specific subnet CIDRs.
+--------------------------------------------------------------------------
+
+FLAGGED INSECURE CREDENTIALS:
+User: postgres | Entropy: 37.6 bits | Severity: CRITICAL
+    Known default or trivial credential pair. Vulnerable to automated brute-force spray.
+--------------------------------------------------------------------------
+User: postgres | Entropy: 18.8 bits | Severity: CRITICAL
+    Known default or trivial credential pair. Vulnerable to automated brute-force spray.
+--------------------------------------------------------------------------
+User: postgres | Entropy: 23.5 bits | Severity: CRITICAL
+    Known default or trivial credential pair. Vulnerable to automated brute-force spray.
+--------------------------------------------------------------------------
+User: postgres | Entropy: 37.6 bits | Severity: CRITICAL
+    Known default or trivial credential pair. Vulnerable to automated brute-force spray.
+--------------------------------------------------------------------------
+User: postgres | Entropy: 19.93 bits | Severity: CRITICAL
+    Known default or trivial credential pair. Vulnerable to automated brute-force spray.
+--------------------------------------------------------------------------
+User: app_user | Entropy: 46.86 bits | Severity: CRITICAL
+    Known default or trivial credential pair. Vulnerable to automated brute-force spray.
+--------------------------------------------------------------------------
+User: readonly | Entropy: 37.6 bits | Severity: CRITICAL
+    Known default or trivial credential pair. Vulnerable to automated brute-force spray.
+--------------------------------------------------------------------------
+User: admin | Entropy: 23.5 bits | Severity: CRITICAL
+    Known default or trivial credential pair. Vulnerable to automated brute-force spray.
+--------------------------------------------------------------------------

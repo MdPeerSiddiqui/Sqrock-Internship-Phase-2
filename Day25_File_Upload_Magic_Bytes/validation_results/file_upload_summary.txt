@@ -1,0 +1,39 @@
+==========================================================================
+PEER'S FILE UPLOAD SECURITY INSPECTION SUMMARY
+Binary Magic Bytes, Extension Spoofing & Polyglot Defense
+==========================================================================
+Generated At           : 2026-11-17 10:53:43 UTC
+Total Files Audited    : 5
+Approved Safe Files    : 2
+Rejected Malicious     : 3
+==========================================================================
+
+DETAILED EVALUATION FINDINGS:
+[ALLOWED] legit_document.pdf (76 bytes) - Severity: SAFE
+    SHA-256    : 9e40b98257f66630dc9c9278c1a88e8a9aa25f17beb960f419d1e5e0126f799c
+    Claimed Ext: .pdf | Detected MIME: application/pdf
+    Quarantine : 9e40b98257f66630.pdf
+--------------------------------------------------------------------------
+[ALLOWED] legit_image.png (33 bytes) - Severity: SAFE
+    SHA-256    : e51872b963a2650f2e3552eb22a1024825547ec62c5b519fbd0ccc294fa1a0a1
+    Claimed Ext: .png | Detected MIME: image/png
+    Quarantine : e51872b963a2650f.png
+--------------------------------------------------------------------------
+[REJECTED] malicious_script.sh (40 bytes) - Severity: CRITICAL
+    SHA-256    : d20846010d47c98ea095ca7787313a315cdc4b210876528366622bfdecae26e2
+    Claimed Ext: .sh | Detected MIME: application/octet-stream
+    Violations : Direct executable extension detected: .sh; Polyglot attack detected: Unix Shell Script Interpreter Shebang
+    Quarantine : d20846010d47c98e.quarantine
+--------------------------------------------------------------------------
+[REJECTED] polyglot_malware.jpg (73 bytes) - Severity: CRITICAL
+    SHA-256    : 17a0eb2f39019591e4a33695afdf519288ccb0913a45f763a210a3e75e296917
+    Claimed Ext: .jpg | Detected MIME: image/jpeg
+    Violations : Polyglot attack detected: Embedded PHP Script Execution Block; Polyglot attack detected: Dynamic Code Evaluation Function (eval)
+    Quarantine : 17a0eb2f39019591.jpg
+--------------------------------------------------------------------------
+[REJECTED] spoofed_webshell.php.png (31 bytes) - Severity: CRITICAL
+    SHA-256    : ac5b099b97c6536012276c5e61c50d4f4fe6fd606bd861c5c15f769153452e68
+    Claimed Ext: .png | Detected MIME: application/octet-stream (Spoofed)
+    Violations : Double-extension spoofing detected: .php.png; Magic bytes header mismatch: claimed .png but signature was invalid or spoofed; Polyglot attack detected: Embedded PHP Script Execution Block; Polyglot attack detected: Command Execution Sink
+    Quarantine : ac5b099b97c65360.png
+--------------------------------------------------------------------------

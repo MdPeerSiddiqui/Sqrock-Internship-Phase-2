@@ -1,0 +1,93 @@
+{
+    "metadata": {
+        "engine": "PEER'S File Upload Vulnerability & Magic Bytes Security Validator v2.0",
+        "author": "Mohammed Peer Siddiqui",
+        "company": "Sqrock IT Solutions",
+        "timestamp": "2026-11-17T10:53:43.315182",
+        "standards": [
+            "OWASP Top 10 A04:2021",
+            "CWE-434"
+        ]
+    },
+    "metrics": {
+        "total_files_audited": 5,
+        "allowed_files": 2,
+        "rejected_malicious_files": 3,
+        "magic_byte_mismatches": 1,
+        "double_extensions_detected": 1,
+        "polyglot_malware_detected": 5
+    },
+    "findings": [
+        {
+            "filename": "legit_document.pdf",
+            "filepath": "Day25_File_Upload_Magic_Bytes/samples\\legit_document.pdf",
+            "file_size_bytes": 76,
+            "sha256": "9e40b98257f66630dc9c9278c1a88e8a9aa25f17beb960f419d1e5e0126f799c",
+            "claimed_extension": "pdf",
+            "detected_mime": "application/pdf",
+            "verdict": "ALLOWED",
+            "severity": "SAFE",
+            "violations": [],
+            "quarantine_name": "9e40b98257f66630.pdf"
+        },
+        {
+            "filename": "legit_image.png",
+            "filepath": "Day25_File_Upload_Magic_Bytes/samples\\legit_image.png",
+            "file_size_bytes": 33,
+            "sha256": "e51872b963a2650f2e3552eb22a1024825547ec62c5b519fbd0ccc294fa1a0a1",
+            "claimed_extension": "png",
+            "detected_mime": "image/png",
+            "verdict": "ALLOWED",
+            "severity": "SAFE",
+            "violations": [],
+            "quarantine_name": "e51872b963a2650f.png"
+        },
+        {
+            "filename": "malicious_script.sh",
+            "filepath": "Day25_File_Upload_Magic_Bytes/samples\\malicious_script.sh",
+            "file_size_bytes": 40,
+            "sha256": "d20846010d47c98ea095ca7787313a315cdc4b210876528366622bfdecae26e2",
+            "claimed_extension": "sh",
+            "detected_mime": "application/octet-stream",
+            "verdict": "REJECTED",
+            "severity": "CRITICAL",
+            "violations": [
+                "Direct executable extension detected: .sh",
+                "Polyglot attack detected: Unix Shell Script Interpreter Shebang"
+            ],
+            "quarantine_name": "d20846010d47c98e.quarantine"
+        },
+        {
+            "filename": "polyglot_malware.jpg",
+            "filepath": "Day25_File_Upload_Magic_Bytes/samples\\polyglot_malware.jpg",
+            "file_size_bytes": 73,
+            "sha256": "17a0eb2f39019591e4a33695afdf519288ccb0913a45f763a210a3e75e296917",
+            "claimed_extension": "jpg",
+            "detected_mime": "image/jpeg",
+            "verdict": "REJECTED",
+            "severity": "CRITICAL",
+            "violations": [
+                "Polyglot attack detected: Embedded PHP Script Execution Block",
+                "Polyglot attack detected: Dynamic Code Evaluation Function (eval)"
+            ],
+            "quarantine_name": "17a0eb2f39019591.jpg"
+        },
+        {
+            "filename": "spoofed_webshell.php.png",
+            "filepath": "Day25_File_Upload_Magic_Bytes/samples\\spoofed_webshell.php.png",
+            "file_size_bytes": 31,
+            "sha256": "ac5b099b97c6536012276c5e61c50d4f4fe6fd606bd861c5c15f769153452e68",
+            "claimed_extension": "png",
+            "detected_mime": "application/octet-stream (Spoofed)",
+            "verdict": "REJECTED",
+            "severity": "CRITICAL",
+            "violations": [
+                "Double-extension spoofing detected: .php.png",
+                "Magic bytes header mismatch: claimed .png but signature was invalid or spoofed",
+                "Polyglot attack detected: Embedded PHP Script Execution Block",
+                "Polyglot attack detected: Command Execution Sink"
+            ],
+            "quarantine_name": "ac5b099b97c65360.png"
+        }
+    ]
+}

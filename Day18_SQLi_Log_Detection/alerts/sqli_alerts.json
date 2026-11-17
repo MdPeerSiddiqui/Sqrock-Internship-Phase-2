@@ -1,0 +1,181 @@
+{
+  "metadata": {
+    "organization": "Sqrock IT Solutions",
+    "suite": "PEER'S SQL Injection Log Detection Engine v2.0",
+    "developer": "Mohammed Peer Siddiqui",
+    "log_source": "C:\\Users\\PERSONAL\\Desktop\\Internship Sqrock\\Day18_SQLi_Log_Detection\\logs\\web_access.log",
+    "audit_timestamp": "2026-11-17T10:22:34.916636",
+    "total_logs_analyzed": 12,
+    "total_attacks_detected": 8,
+    "unique_adversary_ips": 4
+  },
+  "severity_breakdown": {
+    "CRITICAL": 5,
+    "HIGH": 3,
+    "MEDIUM": 0,
+    "LOW": 0
+  },
+  "alerts": [
+    {
+      "alert_id": "ALRT-SQLI-001",
+      "timestamp": "17/Nov/2026:08:15:30 +0000",
+      "source_ip": "10.0.4.12",
+      "method": "POST",
+      "target_endpoint": "/auth/login",
+      "raw_query_string": "/auth/login?user=admin' OR '1'='1",
+      "http_status": 401,
+      "primary_attack_type": "BOOLEAN_BASED",
+      "severity": "HIGH",
+      "category": "Authentication Bypass / Logical Tautology",
+      "signature_matches": [
+        "BOOLEAN_BASED"
+      ],
+      "user_agent": "curl/7.88.1",
+      "remediation": "Convert vulnerable endpoint query to parameterized Prepared Statements (PDO / parameterized ORM)."
+    },
+    {
+      "alert_id": "ALRT-SQLI-002",
+      "timestamp": "17/Nov/2026:08:15:35 +0000",
+      "source_ip": "10.0.4.12",
+      "method": "POST",
+      "target_endpoint": "/auth/login",
+      "raw_query_string": "/auth/login?user=admin' OR 1=1--",
+      "http_status": 401,
+      "primary_attack_type": "BOOLEAN_BASED",
+      "severity": "HIGH",
+      "category": "Authentication Bypass / Logical Tautology",
+      "signature_matches": [
+        "BOOLEAN_BASED",
+        "COMMENT_TRUNCATION"
+      ],
+      "user_agent": "curl/7.88.1",
+      "remediation": "Convert vulnerable endpoint query to parameterized Prepared Statements (PDO / parameterized ORM)."
+    },
+    {
+      "alert_id": "ALRT-SQLI-003",
+      "timestamp": "17/Nov/2026:08:18:22 +0000",
+      "source_ip": "172.16.5.9",
+      "method": "GET",
+      "target_endpoint": "/search",
+      "raw_query_string": "/search?q=UNION SELECT null,password FROM users--",
+      "http_status": 500,
+      "primary_attack_type": "UNION_BASED",
+      "severity": "CRITICAL",
+      "category": "In-Band Data Exfiltration",
+      "signature_matches": [
+        "UNION_BASED",
+        "COMMENT_TRUNCATION"
+      ],
+      "user_agent": "sqlmap/1.7.2#stable",
+      "remediation": "Convert vulnerable endpoint query to parameterized Prepared Statements (PDO / parameterized ORM)."
+    },
+    {
+      "alert_id": "ALRT-SQLI-004",
+      "timestamp": "17/Nov/2026:08:18:28 +0000",
+      "source_ip": "172.16.5.9",
+      "method": "GET",
+      "target_endpoint": "/search",
+      "raw_query_string": "/search?q=UNION ALL SELECT 1,table_name FROM information_schema.tables--",
+      "http_status": 500,
+      "primary_attack_type": "UNION_BASED",
+      "severity": "CRITICAL",
+      "category": "In-Band Data Exfiltration",
+      "signature_matches": [
+        "UNION_BASED",
+        "METADATA_DISCOVERY",
+        "COMMENT_TRUNCATION"
+      ],
+      "user_agent": "sqlmap/1.7.2#stable",
+      "remediation": "Convert vulnerable endpoint query to parameterized Prepared Statements (PDO / parameterized ORM)."
+    },
+    {
+      "alert_id": "ALRT-SQLI-005",
+      "timestamp": "17/Nov/2026:08:22:45 +0000",
+      "source_ip": "198.51.100.88",
+      "method": "GET",
+      "target_endpoint": "/catalog",
+      "raw_query_string": "/catalog?cat=electronics'; WAITFOR DELAY '0:0:5'--",
+      "http_status": 200,
+      "primary_attack_type": "TIME_BASED_BLIND",
+      "severity": "CRITICAL",
+      "category": "Blind Inference Exploitation",
+      "signature_matches": [
+        "TIME_BASED_BLIND",
+        "COMMENT_TRUNCATION"
+      ],
+      "user_agent": "Mozilla/5.0",
+      "remediation": "Convert vulnerable endpoint query to parameterized Prepared Statements (PDO / parameterized ORM)."
+    },
+    {
+      "alert_id": "ALRT-SQLI-006",
+      "timestamp": "17/Nov/2026:08:23:12 +0000",
+      "source_ip": "198.51.100.88",
+      "method": "GET",
+      "target_endpoint": "/catalog",
+      "raw_query_string": "/catalog?cat=1 AND pg_sleep(5)--",
+      "http_status": 200,
+      "primary_attack_type": "TIME_BASED_BLIND",
+      "severity": "CRITICAL",
+      "category": "Blind Inference Exploitation",
+      "signature_matches": [
+        "TIME_BASED_BLIND",
+        "COMMENT_TRUNCATION"
+      ],
+      "user_agent": "Mozilla/5.0",
+      "remediation": "Convert vulnerable endpoint query to parameterized Prepared Statements (PDO / parameterized ORM)."
+    },
+    {
+      "alert_id": "ALRT-SQLI-007",
+      "timestamp": "17/Nov/2026:08:40:15 +0000",
+      "source_ip": "203.0.113.72",
+      "method": "GET",
+      "target_endpoint": "/api/v1/orders",
+      "raw_query_string": "/api/v1/orders?order_id=1092'; DROP TABLE audit_logs;--",
+      "http_status": 403,
+      "primary_attack_type": "STACKED_QUERIES",
+      "severity": "CRITICAL",
+      "category": "Destructive Data Modification",
+      "signature_matches": [
+        "STACKED_QUERIES",
+        "COMMENT_TRUNCATION"
+      ],
+      "user_agent": "Python-urllib/3.10",
+      "remediation": "Convert vulnerable endpoint query to parameterized Prepared Statements (PDO / parameterized ORM)."
+    },
+    {
+      "alert_id": "ALRT-SQLI-008",
+      "timestamp": "17/Nov/2026:08:41:01 +0000",
+      "source_ip": "203.0.113.72",
+      "method": "GET",
+      "target_endpoint": "/api/v1/items",
+      "raw_query_string": "/api/v1/items?filter=1' OR 'x'='x",
+      "http_status": 200,
+      "primary_attack_type": "BOOLEAN_BASED",
+      "severity": "HIGH",
+      "category": "Authentication Bypass / Logical Tautology",
+      "signature_matches": [
+        "BOOLEAN_BASED"
+      ],
+      "user_agent": "Python-urllib/3.10",
+      "remediation": "Convert vulnerable endpoint query to parameterized Prepared Statements (PDO / parameterized ORM)."
+    }
+  ],
+  "ip_threat_matrix": {
+    "10.0.4.12": 2,
+    "172.16.5.9": 2,
+    "198.51.100.88": 2,
+    "203.0.113.72": 2
+  },
+  "prepared_statement_defense": {
+    "vulnerable_pattern": {
+      "paradigm": "Unsanitized Dynamic String Concatenation",
+      "code_sample": "cursor.execute(\"SELECT * FROM users WHERE user = '\" + input_user + \"' AND pass = '\" + input_pass + \"'\")",
+      "execution_mechanics": "The database query parser evaluates user input as operational SQL grammar, allowing injected syntax (' OR 1=1) to modify the Abstract Syntax Tree (AST)."
+    },
+    "secure_pattern": {
+      "paradigm": "Pre-Compiled Prepared Statements (Parameterized Queries)",
+      "code_sample": "cursor.execute(\"SELECT * FROM users WHERE user = %s AND pass = %s\", (input_user, input_pass))",
+      "execution_mechanics": "The database compiles the SQL statement template into a binary execution plan BEFORE parameters are bound. User input is treated strictly as literal data strings."
+    }
+  }
+}

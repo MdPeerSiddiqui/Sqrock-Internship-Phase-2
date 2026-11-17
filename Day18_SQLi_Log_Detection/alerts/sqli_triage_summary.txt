@@ -1,0 +1,76 @@
+================================================================================
+     SQROCK IT SOLUTIONS - SQL INJECTION LOG DETECTION AUDIT BRIEFING
+================================================================================
+Analyzed Log Path      : C:\Users\PERSONAL\Desktop\Internship Sqrock\Day18_SQLi_Log_Detection\logs\web_access.log
+Audit Timestamp        : 2026-11-17T10:22:34.916636
+Total Requests Scanned : 12
+Total Malicious Events : 8
+Unique Attacker Hosts  : 4
+Critical Severity      : 5
+High Severity          : 3
+--------------------------------------------------------------------------------
+
+--- 1. ACTIVE SQL INJECTION DETECTIONS ---
+[HIGH] ALRT-SQLI-001 - BOOLEAN_BASED
+  Source IP     : 10.0.4.12 (Status: 401)
+  Target Route  : POST /auth/login
+  Injected String: /auth/login?user=admin' OR '1'='1
+  User-Agent    : curl/7.88.1
+  Remediation   : Convert vulnerable endpoint query to parameterized Prepared Statements (PDO / parameterized ORM).
+
+[HIGH] ALRT-SQLI-002 - BOOLEAN_BASED
+  Source IP     : 10.0.4.12 (Status: 401)
+  Target Route  : POST /auth/login
+  Injected String: /auth/login?user=admin' OR 1=1--
+  User-Agent    : curl/7.88.1
+  Remediation   : Convert vulnerable endpoint query to parameterized Prepared Statements (PDO / parameterized ORM).
+
+[CRITICAL] ALRT-SQLI-003 - UNION_BASED
+  Source IP     : 172.16.5.9 (Status: 500)
+  Target Route  : GET /search
+  Injected String: /search?q=UNION SELECT null,password FROM users--
+  User-Agent    : sqlmap/1.7.2#stable
+  Remediation   : Convert vulnerable endpoint query to parameterized Prepared Statements (PDO / parameterized ORM).
+
+[CRITICAL] ALRT-SQLI-004 - UNION_BASED
+  Source IP     : 172.16.5.9 (Status: 500)
+  Target Route  : GET /search
+  Injected String: /search?q=UNION ALL SELECT 1,table_name FROM information_schema.tables--
+  User-Agent    : sqlmap/1.7.2#stable
+  Remediation   : Convert vulnerable endpoint query to parameterized Prepared Statements (PDO / parameterized ORM).
+
+[CRITICAL] ALRT-SQLI-005 - TIME_BASED_BLIND
+  Source IP     : 198.51.100.88 (Status: 200)
+  Target Route  : GET /catalog
+  Injected String: /catalog?cat=electronics'; WAITFOR DELAY '0:0:5'--
+  User-Agent    : Mozilla/5.0
+  Remediation   : Convert vulnerable endpoint query to parameterized Prepared Statements (PDO / parameterized ORM).
+
+[CRITICAL] ALRT-SQLI-006 - TIME_BASED_BLIND
+  Source IP     : 198.51.100.88 (Status: 200)
+  Target Route  : GET /catalog
+  Injected String: /catalog?cat=1 AND pg_sleep(5)--
+  User-Agent    : Mozilla/5.0
+  Remediation   : Convert vulnerable endpoint query to parameterized Prepared Statements (PDO / parameterized ORM).
+
+[CRITICAL] ALRT-SQLI-007 - STACKED_QUERIES
+  Source IP     : 203.0.113.72 (Status: 403)
+  Target Route  : GET /api/v1/orders
+  Injected String: /api/v1/orders?order_id=1092'; DROP TABLE audit_logs;--
+  User-Agent    : Python-urllib/3.10
+  Remediation   : Convert vulnerable endpoint query to parameterized Prepared Statements (PDO / parameterized ORM).
+
+[HIGH] ALRT-SQLI-008 - BOOLEAN_BASED
+  Source IP     : 203.0.113.72 (Status: 200)
+  Target Route  : GET /api/v1/items
+  Injected String: /api/v1/items?filter=1' OR 'x'='x
+  User-Agent    : Python-urllib/3.10
+  Remediation   : Convert vulnerable endpoint query to parameterized Prepared Statements (PDO / parameterized ORM).
+
+--- 2. ADVERSARY IP THREAT CONCENTRATION ---
+  Host: 10.0.4.12          -> 2 malicious attack payloads intercepted
+  Host: 172.16.5.9         -> 2 malicious attack payloads intercepted
+  Host: 198.51.100.88      -> 2 malicious attack payloads intercepted
+  Host: 203.0.113.72       -> 2 malicious attack payloads intercepted
+
+--------------------------------------------------------------------------------

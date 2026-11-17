@@ -1,0 +1,86 @@
+{
+    "metadata": {
+        "engine": "PEER'S Threat Intelligence IP Blocking Pipeline v2.0",
+        "author": "Mohammed Peer Siddiqui",
+        "company": "Sqrock IT Solutions",
+        "timestamp": "2026-11-17T10:49:22.496957",
+        "standards": [
+            "NIST SP 800-150",
+            "MITRE ATT&CK M1037"
+        ]
+    },
+    "metrics": {
+        "total_iocs_ingested": 7,
+        "valid_ips": 7,
+        "blocked_ips": 5,
+        "monitored_allowed_ips": 2,
+        "avg_confidence_score": 71.4
+    },
+    "blocked_iocs": [
+        {
+            "ip": "185.220.101.5",
+            "source": "AlienVault OTX",
+            "threat_type": "Tor Exit Node / Bulletproof Proxy",
+            "confidence_score": 88,
+            "first_seen": "2026-11-01T08:12:00Z",
+            "asn": "AS208294",
+            "country": "DE"
+        },
+        {
+            "ip": "45.154.255.89",
+            "source": "AbuseIPDB",
+            "threat_type": "Cobalt Strike C2 Beacon",
+            "confidence_score": 98,
+            "first_seen": "2026-11-12T14:33:00Z",
+            "asn": "AS44050",
+            "country": "RU"
+        },
+        {
+            "ip": "194.26.29.112",
+            "source": "Emerging Threats",
+            "threat_type": "SSH Brute-Force Daemon",
+            "confidence_score": 85,
+            "first_seen": "2026-11-15T02:11:00Z",
+            "asn": "AS51852",
+            "country": "NL"
+        },
+        {
+            "ip": "103.145.13.24",
+            "source": "Cisco Talos",
+            "threat_type": "Mirai Botnet DDoS Worker",
+            "confidence_score": 92,
+            "first_seen": "2026-11-16T19:40:00Z",
+            "asn": "AS139007",
+            "country": "VN"
+        },
+        {
+            "ip": "91.240.118.170",
+            "source": "AbuseIPDB",
+            "threat_type": "Automated SQLi / Web Vulnerability Scanner",
+            "confidence_score": 82,
+            "first_seen": "2026-11-16T22:05:00Z",
+            "asn": "AS49981",
+            "country": "UA"
+        }
+    ],
+    "allowed_iocs": [
+        {
+            "ip": "198.51.100.42",
+            "source": "Internal SIEM Anomaly",
+            "threat_type": "Unverified Port Probe",
+            "confidence_score": 50,
+            "first_seen": "2026-11-17T03:00:00Z",
+            "asn": "AS64512",
+            "country": "US"
+        },
+        {
+            "ip": "1.1.1.1",
+            "source": "Global Whitelist",
+            "threat_type": "Public Anycast DNS Resolver (Cloudflare)",
+            "confidence_score": 5,
+            "first_seen": "2026-01-01T00:00:00Z",
+            "asn": "AS13335",
+            "country": "US"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+==========================================================================
+PEER'S THREAT INTELLIGENCE FIREWALL ENFORCEMENT SUMMARY
+Automated IoC Risk Scoring & Drop Rule Synthesis
+==========================================================================
+Generated At          : 2026-11-17 10:49:22 UTC
+Total IoCs Processed  : 7
+Blocked Threat IPs    : 5
+Allowed / Whitelisted : 2
+==========================================================================
+
+ENFORCED FIREWALL DROP RULES:
+[DROP] 185.220.101.5 | Confidence: 88% | Source: AlienVault OTX
+       Threat: Tor Exit Node / Bulletproof Proxy | ASN: AS208294 (DE)
+--------------------------------------------------------------------------
+[DROP] 45.154.255.89 | Confidence: 98% | Source: AbuseIPDB
+       Threat: Cobalt Strike C2 Beacon | ASN: AS44050 (RU)
+--------------------------------------------------------------------------
+[DROP] 194.26.29.112 | Confidence: 85% | Source: Emerging Threats
+       Threat: SSH Brute-Force Daemon | ASN: AS51852 (NL)
+--------------------------------------------------------------------------
+[DROP] 103.145.13.24 | Confidence: 92% | Source: Cisco Talos
+       Threat: Mirai Botnet DDoS Worker | ASN: AS139007 (VN)
+--------------------------------------------------------------------------
+[DROP] 91.240.118.170 | Confidence: 82% | Source: AbuseIPDB
+       Threat: Automated SQLi / Web Vulnerability Scanner | ASN: AS49981 (UA)
+--------------------------------------------------------------------------

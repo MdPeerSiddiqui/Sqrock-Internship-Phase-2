@@ -1,0 +1,25 @@
+==========================================================================
+PEER'S API RATE LIMITING & BURST THROTTLING SUMMARY
+Token Bucket Algorithm & HTTP 429 Too Many Requests Defense
+==========================================================================
+Generated At          : 2026-11-17 10:41:02 UTC
+Configured Capacity   : 10.0 Tokens
+Refill Rate           : 2.0 Tokens/sec
+Total Evaluated       : 15
+Allowed (200 OK)      : 11
+Throttled (HTTP 429)  : 4
+==========================================================================
+
+SAMPLE RECENT HTTP 429 MITIGATION EVENTS:
+[THROTTLED 429] Client: 192.168.1.105 | Tokens Remaining: 0
+    Headers Generated : {"X-RateLimit-Limit": "10", "X-RateLimit-Remaining": "0", "X-RateLimit-Reset": "1794892267", "Retry-After": "1"}
+--------------------------------------------------------------------------
+[THROTTLED 429] Client: 192.168.1.105 | Tokens Remaining: 0
+    Headers Generated : {"X-RateLimit-Limit": "10", "X-RateLimit-Remaining": "0", "X-RateLimit-Reset": "1794892267", "Retry-After": "1"}
+--------------------------------------------------------------------------
+[THROTTLED 429] Client: 192.168.1.105 | Tokens Remaining: 0
+    Headers Generated : {"X-RateLimit-Limit": "10", "X-RateLimit-Remaining": "0", "X-RateLimit-Reset": "1794892267", "Retry-After": "1"}
+--------------------------------------------------------------------------
+[THROTTLED 429] Client: 192.168.1.105 | Tokens Remaining: 0
+    Headers Generated : {"X-RateLimit-Limit": "10", "X-RateLimit-Remaining": "0", "X-RateLimit-Reset": "1794892267", "Retry-After": "1"}
+--------------------------------------------------------------------------

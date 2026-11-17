@@ -1,0 +1,238 @@
+{
+    "metadata": {
+        "engine": "PEER'S API Rate Limiting & Token Bucket Defense Suite v2.0",
+        "author": "Mohammed Peer Siddiqui",
+        "company": "Sqrock IT Solutions",
+        "timestamp": "2026-11-17T10:41:02.737459",
+        "standards": [
+            "RFC 6585",
+            "OWASP API Security Top 10 API4:2023"
+        ]
+    },
+    "configuration": {
+        "capacity": 10.0,
+        "refill_rate": 2.0
+    },
+    "metrics": {
+        "total_requests": 15,
+        "allowed_requests": 11,
+        "throttled_requests": 4,
+        "unique_clients_tracked": 1
+    },
+    "recent_events": [
+        {
+            "timestamp": "2026-11-17T10:41:01.975290",
+            "client_id": "192.168.1.105",
+            "status_code": 200,
+            "status_message": "OK",
+            "allowed": true,
+            "remaining_tokens": 9,
+            "retry_after_seconds": 0.0,
+            "headers": {
+                "X-RateLimit-Limit": "10",
+                "X-RateLimit-Remaining": "9",
+                "X-RateLimit-Reset": "1794892262"
+            }
+        },
+        {
+            "timestamp": "2026-11-17T10:41:02.025588",
+            "client_id": "192.168.1.105",
+            "status_code": 200,
+            "status_message": "OK",
+            "allowed": true,
+            "remaining_tokens": 8,
+            "retry_after_seconds": 0.0,
+            "headers": {
+                "X-RateLimit-Limit": "10",
+                "X-RateLimit-Remaining": "8",
+                "X-RateLimit-Reset": "1794892263"
+            }
+        },
+        {
+            "timestamp": "2026-11-17T10:41:02.076318",
+            "client_id": "192.168.1.105",
+            "status_code": 200,
+            "status_message": "OK",
+            "allowed": true,
+            "remaining_tokens": 7,
+            "retry_after_seconds": 0.0,
+            "headers": {
+                "X-RateLimit-Limit": "10",
+                "X-RateLimit-Remaining": "7",
+                "X-RateLimit-Reset": "1794892263"
+            }
+        },
+        {
+            "timestamp": "2026-11-17T10:41:02.127148",
+            "client_id": "192.168.1.105",
+            "status_code": 200,
+            "status_message": "OK",
+            "allowed": true,
+            "remaining_tokens": 6,
+            "retry_after_seconds": 0.0,
+            "headers": {
+                "X-RateLimit-Limit": "10",
+                "X-RateLimit-Remaining": "6",
+                "X-RateLimit-Reset": "1794892264"
+            }
+        },
+        {
+            "timestamp": "2026-11-17T10:41:02.177614",
+            "client_id": "192.168.1.105",
+            "status_code": 200,
+            "status_message": "OK",
+            "allowed": true,
+            "remaining_tokens": 5,
+            "retry_after_seconds": 0.0,
+            "headers": {
+                "X-RateLimit-Limit": "10",
+                "X-RateLimit-Remaining": "5",
+                "X-RateLimit-Reset": "1794892264"
+            }
+        },
+        {
+            "timestamp": "2026-11-17T10:41:02.227828",
+            "client_id": "192.168.1.105",
+            "status_code": 200,
+            "status_message": "OK",
+            "allowed": true,
+            "remaining_tokens": 4,
+            "retry_after_seconds": 0.0,
+            "headers": {
+                "X-RateLimit-Limit": "10",
+                "X-RateLimit-Remaining": "4",
+                "X-RateLimit-Reset": "1794892265"
+            }
+        },
+        {
+            "timestamp": "2026-11-17T10:41:02.278438",
+            "client_id": "192.168.1.105",
+            "status_code": 200,
+            "status_message": "OK",
+            "allowed": true,
+            "remaining_tokens": 3,
+            "retry_after_seconds": 0.0,
+            "headers": {
+                "X-RateLimit-Limit": "10",
+                "X-RateLimit-Remaining": "3",
+                "X-RateLimit-Reset": "1794892265"
+            }
+        },
+        {
+            "timestamp": "2026-11-17T10:41:02.329017",
+            "client_id": "192.168.1.105",
+            "status_code": 200,
+            "status_message": "OK",
+            "allowed": true,
+            "remaining_tokens": 2,
+            "retry_after_seconds": 0.0,
+            "headers": {
+                "X-RateLimit-Limit": "10",
+                "X-RateLimit-Remaining": "2",
+                "X-RateLimit-Reset": "1794892266"
+            }
+        },
+        {
+            "timestamp": "2026-11-17T10:41:02.379391",
+            "client_id": "192.168.1.105",
+            "status_code": 200,
+            "status_message": "OK",
+            "allowed": true,
+            "remaining_tokens": 1,
+            "retry_after_seconds": 0.0,
+            "headers": {
+                "X-RateLimit-Limit": "10",
+                "X-RateLimit-Remaining": "1",
+                "X-RateLimit-Reset": "1794892266"
+            }
+        },
+        {
+            "timestamp": "2026-11-17T10:41:02.429948",
+            "client_id": "192.168.1.105",
+            "status_code": 200,
+            "status_message": "OK",
+            "allowed": true,
+            "remaining_tokens": 0,
+            "retry_after_seconds": 0.0,
+            "headers": {
+                "X-RateLimit-Limit": "10",
+                "X-RateLimit-Remaining": "0",
+                "X-RateLimit-Reset": "1794892267"
+            }
+        },
+        {
+            "timestamp": "2026-11-17T10:41:02.480189",
+            "client_id": "192.168.1.105",
+            "status_code": 200,
+            "status_message": "OK",
+            "allowed": true,
+            "remaining_tokens": 0,
+            "retry_after_seconds": 0.0,
+            "headers": {
+                "X-RateLimit-Limit": "10",
+                "X-RateLimit-Remaining": "0",
+                "X-RateLimit-Reset": "1794892267"
+            }
+        },
+        {
+            "timestamp": "2026-11-17T10:41:02.530764",
+            "client_id": "192.168.1.105",
+            "status_code": 429,
+            "status_message": "Too Many Requests",
+            "allowed": false,
+            "remaining_tokens": 0,
+            "retry_after_seconds": 0.44,
+            "headers": {
+                "X-RateLimit-Limit": "10",
+                "X-RateLimit-Remaining": "0",
+                "X-RateLimit-Reset": "1794892267",
+                "Retry-After": "1"
+            }
+        },
+        {
+            "timestamp": "2026-11-17T10:41:02.581654",
+            "client_id": "192.168.1.105",
+            "status_code": 429,
+            "status_message": "Too Many Requests",
+            "allowed": false,
+            "remaining_tokens": 0,
+            "retry_after_seconds": 0.39,
+            "headers": {
+                "X-RateLimit-Limit": "10",
+                "X-RateLimit-Remaining": "0",
+                "X-RateLimit-Reset": "1794892267",
+                "Retry-After": "1"
+            }
+        },
+        {
+            "timestamp": "2026-11-17T10:41:02.632471",
+            "client_id": "192.168.1.105",
+            "status_code": 429,
+            "status_message": "Too Many Requests",
+            "allowed": false,
+            "remaining_tokens": 0,
+            "retry_after_seconds": 0.34,
+            "headers": {
+                "X-RateLimit-Limit": "10",
+                "X-RateLimit-Remaining": "0",
+                "X-RateLimit-Reset": "1794892267",
+                "Retry-After": "1"
+            }
+        },
+        {
+            "timestamp": "2026-11-17T10:41:02.683462",
+            "client_id": "192.168.1.105",
+            "status_code": 429,
+            "status_message": "Too Many Requests",
+            "allowed": false,
+            "remaining_tokens": 0,
+            "retry_after_seconds": 0.29,
+            "headers": {
+                "X-RateLimit-Limit": "10",
+                "X-RateLimit-Remaining": "0",
+                "X-RateLimit-Reset": "1794892267",
+                "Retry-After": "1"
+            }
+        }
+    ]
+}

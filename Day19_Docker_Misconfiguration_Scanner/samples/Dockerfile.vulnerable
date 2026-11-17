@@ -1,0 +1,21 @@
+FROM ubuntu:latest
+MAINTAINER devops@sqrock-test.local
+
+# Insecure embedded credentials in build layer
+ENV DB_PASSWORD="SuperSecretPassword123!"
+ENV AWS_SECRET_ACCESS_KEY="AKIAIOSFODNN7EXAMPLEKEY"
+
+# Insecure packages: running an SSH daemon inside a container
+RUN apt-get update && apt-get install -y openssh-server sudo curl
+
+# Dangerous port exposure: SSH port 22
+EXPOSE 22
+EXPOSE 80
+
+# Dangerous ADD instruction pulling untrusted remote archive
+ADD https://insecure-cdn.example.com/payload.tar.gz /app/payload.tar.gz
+
+# Insecure root execution
+USER root
+
+CMD ["/usr/sbin/sshd", "-D"]

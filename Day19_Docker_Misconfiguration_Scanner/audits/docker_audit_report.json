@@ -1,0 +1,161 @@
+{
+    "metadata": {
+        "engine": "PEER'S Docker Container Misconfiguration Scanner v2.0",
+        "author": "Mohammed Peer Siddiqui",
+        "company": "Sqrock IT Solutions",
+        "target_file": "Day19_Docker_Misconfiguration_Scanner/samples/Dockerfile.vulnerable",
+        "timestamp": "2026-11-17T10:27:43.477080",
+        "standards": [
+            "CIS Docker Benchmark v1.6.0",
+            "NIST SP 800-190"
+        ]
+    },
+    "summary_stats": {
+        "CRITICAL": 4,
+        "HIGH": 2,
+        "MEDIUM": 1,
+        "LOW": 2,
+        "SAFE": 0,
+        "TOTAL_RULES_EVALUATED": 8
+    },
+    "findings_count": 9,
+    "findings": [
+        {
+            "rule_id": "DOCKER_TAG_LATEST",
+            "title": "Unpinned Base Image (:latest or untagged)",
+            "cis_id": "CIS 4.2",
+            "nist_id": "NIST SP 800-190 S3.2",
+            "severity": "HIGH",
+            "line": 1,
+            "raw_instruction": "FROM ubuntu:latest",
+            "context": {
+                "detected_image": "ubuntu:latest",
+                "risk": "Using latest or unpinned base image allows unexpected breaking changes or compromised layers."
+            },
+            "description": "Base image references :latest or lacks specific version pinning, exposing the build to supply chain drift and breaking changes.",
+            "remediation": "Pin base image to explicit semantic version or cryptographic digest (e.g. 'python:3.11.8-slim-bookworm@sha256:...')."
+        },
+        {
+            "rule_id": "DOCKER_DEPRECATED_MAINTAINER",
+            "title": "Deprecated MAINTAINER Instruction",
+            "cis_id": "CIS 4.10",
+            "nist_id": "NIST SP 800-190 S3.7",
+            "severity": "LOW",
+            "line": 2,
+            "raw_instruction": "MAINTAINER devops@sqrock-test.local",
+            "context": {
+                "maintainer": "devops@sqrock-test.local",
+                "risk": "MAINTAINER instruction is obsolete; use LABEL maintainer instead."
+            },
+            "description": "The MAINTAINER directive is deprecated in modern OCI and Docker build specifications.",
+            "remediation": "Replace 'MAINTAINER' with standard OCI label 'LABEL maintainer=\"...\"'."
+        },
+        {
+            "rule_id": "DOCKER_HARDCODED_SECRET",
+            "title": "Hardcoded Secrets in Environment Variables",
+            "cis_id": "CIS 4.4",
+            "nist_id": "NIST SP 800-190 S3.4",
+            "severity": "CRITICAL",
+            "line": 5,
+            "raw_instruction": "ENV DB_PASSWORD=\"SuperSecretPassword123!\"",
+            "context": {
+                "declaration": "DB_PASSWORD=\"SuperSecretPassword123!\"",
+                "risk": "Hardcoded credentials in image metadata can be extracted with 'docker history'."
+            },
+            "description": "Sensitive credentials (passwords, API tokens, AWS keys) detected directly in ENV/ARG instructions, permanently baked into layer history.",
+            "remediation": "Remove secret values from Dockerfile. Ingest secrets dynamically at runtime via Docker Secrets, Kubernetes Secrets, or HashiCorp Vault."
+        },
+        {
+            "rule_id": "DOCKER_HARDCODED_SECRET",
+            "title": "Hardcoded Secrets in Environment Variables",
+            "cis_id": "CIS 4.4",
+            "nist_id": "NIST SP 800-190 S3.4",
+            "severity": "CRITICAL",
+            "line": 6,
+            "raw_instruction": "ENV AWS_SECRET_ACCESS_KEY=\"AKIAIOSFODNN7EXAMPLEKEY\"",
+            "context": {
+                "declaration": "AWS_SECRET_ACCESS_KEY=\"AKIAIOSFODNN7EXAMPLEKEY\"",
+                "risk": "Hardcoded credentials in image metadata can be extracted with 'docker history'."
+            },
+            "description": "Sensitive credentials (passwords, API tokens, AWS keys) detected directly in ENV/ARG instructions, permanently baked into layer history.",
+            "remediation": "Remove secret values from Dockerfile. Ingest secrets dynamically at runtime via Docker Secrets, Kubernetes Secrets, or HashiCorp Vault."
+        },
+        {
+            "rule_id": "DOCKER_SUDO_INSTALLED",
+            "title": "Privilege Escalation Tools (sudo) Installed",
+            "cis_id": "CIS 4.8",
+            "nist_id": "NIST SP 800-190 S3.8",
+            "severity": "HIGH",
+            "line": 9,
+            "raw_instruction": "RUN apt-get update && apt-get install -y openssh-server sudo curl",
+            "context": {
+                "command": "apt-get update && apt-get install -y openssh-server sudo curl",
+                "risk": "Installing sudo provides unnecessary privilege escalation vectors within the container."
+            },
+            "description": "Package management commands install 'sudo', allowing potential privilege escalation pathways inside the container.",
+            "remediation": "Do not install sudo or su binaries in production containers. Design workloads to run under strict least-privilege principles."
+        },
+        {
+            "rule_id": "DOCKER_EXPOSE_SSH",
+            "title": "Dangerous Port Exposure (SSH Port 22)",
+            "cis_id": "CIS 4.3",
+            "nist_id": "NIST SP 800-190 S3.3",
+            "severity": "CRITICAL",
+            "line": 12,
+            "raw_instruction": "EXPOSE 22",
+            "context": {
+                "exposed_ports": [
+                    "22"
+                ],
+                "risk": "SSH server exposed inside container violates single-responsibility principle and invites brute-force attacks."
+            },
+            "description": "Container exposes SSH port 22. Containers should follow single-responsibility microservice architecture; remote management via SSH breaks immutability.",
+            "remediation": "Remove 'EXPOSE 22' and uninstall OpenSSH server daemons. Use container orchestrator exec commands (e.g., 'docker exec' or 'kubectl exec') for debugging."
+        },
+        {
+            "rule_id": "DOCKER_INSECURE_ADD",
+            "title": "Use of ADD Instead of COPY for Untrusted Remote Archives",
+            "cis_id": "CIS 4.9",
+            "nist_id": "NIST SP 800-190 S3.5",
+            "severity": "MEDIUM",
+            "line": 16,
+            "raw_instruction": "ADD https://insecure-cdn.example.com/payload.tar.gz /app/payload.tar.gz",
+            "context": {
+                "add_payload": "https://insecure-cdn.example.com/payload.tar.gz /app/payload.tar.gz",
+                "risk": "ADD directive with remote URL or auto-extract archive risks MITM injection or zip bombs."
+            },
+            "description": "Instruction uses ADD with remote URLs or local archives. ADD features automatic tar extraction and remote downloads that can lead to MITM or zip bombs.",
+            "remediation": "Replace 'ADD' with 'COPY' for local files. For remote downloads, use 'curl' or 'wget' with checksum verification within a RUN directive."
+        },
+        {
+            "rule_id": "DOCKER_USER_ROOT",
+            "title": "Container Running as Root User",
+            "cis_id": "CIS 4.1",
+            "nist_id": "NIST SP 800-190 S3.1",
+            "severity": "CRITICAL",
+            "line": 19,
+            "raw_instruction": "USER root",
+            "context": {
+                "configured_user": "root",
+                "risk": "Explicit root user directive enables full container privileges."
+            },
+            "description": "Container executes as root (UID 0), granting full host root equivalency in unconfined namespaces and increasing breakout risk.",
+            "remediation": "Declare a non-privileged user and group using 'USER nonroot:nonroot' or explicit numeric UID (e.g. 'USER 10001:10001')."
+        },
+        {
+            "rule_id": "DOCKER_MISSING_HEALTHCHECK",
+            "title": "Missing Container HEALTHCHECK Directive",
+            "cis_id": "CIS 4.6",
+            "nist_id": "NIST SP 800-190 S3.6",
+            "severity": "LOW",
+            "line": 1,
+            "raw_instruction": "MISSING_HEALTHCHECK_DIRECTIVE",
+            "context": {
+                "status": "Not configured",
+                "risk": "No HEALTHCHECK instruction declared; container availability cannot be dynamically verified."
+            },
+            "description": "Dockerfile does not define a HEALTHCHECK mechanism. Orchestrators cannot automatically detect crashed, deadlocked, or hung application services.",
+            "remediation": "Define a HEALTHCHECK instruction (e.g. 'HEALTHCHECK --interval=30s --timeout=5s CMD curl -f http://localhost:8080/health || exit 1')."
+        }
+    ]
+}

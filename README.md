@@ -69,7 +69,7 @@ This unified monorepo houses all 15 advanced security engineering packages devel
 | **23** | **Postgres Database Credential Auditing** | [`Day23_Postgres_Credential_Auditor/`](Day23_Postgres_Credential_Auditor/) | **6/6 Passed** | [7-Page Report](reports/Day23_Postgres_Credential_Audit_Report_Sqrock_MdPeerSiddiqui.pdf) | **COMPLETED** |
 | **24** | **Automated Threat Intel IP Blocking Pipeline**| [`Day24_Threat_Intel_IP_Blocker/`](Day24_Threat_Intel_IP_Blocker/) | **6/6 Passed** | [7-Page Report](reports/Day24_Threat_Intel_Pipeline_Report_Sqrock_MdPeerSiddiqui.pdf) | **COMPLETED** |
 | **25** | **File Upload Vulnerability & Magic Bytes** | [`Day25_File_Upload_Magic_Bytes/`](Day25_File_Upload_Magic_Bytes/) | **6/6 Passed** | [7-Page Report](reports/Day25_File_Upload_Security_Report_Sqrock_MdPeerSiddiqui.pdf) | **COMPLETED** |
-| **26** | **Custom Web Application Firewall (WAF)** | `Day26_Custom_WAF_Engine/` | Pending | 7-Page Report | Queue |
+| **26** | **Custom Web Application Firewall (WAF)** | [`Day26_Custom_WAF_Engine/`](Day26_Custom_WAF_Engine/) | **6/6 Passed** | [7-Page Report](reports/Day26_Custom_WAF_Report_Sqrock_MdPeerSiddiqui.pdf) | **COMPLETED** |
 | **27** | **Automated Vulnerability Report Aggregator** | `Day27_Vulnerability_Report_Aggregator/` | Pending | 7-Page Report | Queue |
 | **28** | **SIEM Alert Trigger via Webhooks** | `Day28_SIEM_Webhook_Automation/` | Pending | 7-Page Report | Queue |
 | **29** | **Incident Containment & Host Isolation** | `Day29_Incident_Host_Isolation/` | Pending | 7-Page Report | Queue |

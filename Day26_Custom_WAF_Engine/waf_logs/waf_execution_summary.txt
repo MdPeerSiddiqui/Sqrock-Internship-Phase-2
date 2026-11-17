@@ -1,0 +1,14 @@
+======================================================================
+SQROCK WAF ENGINE EXECUTION SUMMARY
+Generated: 2026-11-17 05:29:31 UTC
+======================================================================
+Total Inspected: 6
+Total Allowed:   1
+Total Blocked:   5
+
+Attack Categories Detected:
+ - SQL Injection (SQLi): 1
+ - Cross-Site Scripting (XSS): 1
+ - Path Traversal / LFI: 2
+ - Malicious Scanner / Tool: 1
+======================================================================

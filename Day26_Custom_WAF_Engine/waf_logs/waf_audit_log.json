@@ -1,0 +1,160 @@
+{
+  "metadata": {
+    "system": "PEER'S Web Application Firewall (WAF) Engine",
+    "organization": "Sqrock IT Solutions",
+    "internship_track": "Phase 2: Web App Security & Defensive Automation",
+    "candidate": "Mohammed Peer Siddiqui",
+    "generated_at": "2026-11-17 05:29:31 UTC"
+  },
+  "summary_metrics": {
+    "total_inspected": 6,
+    "total_allowed": 1,
+    "total_blocked": 5,
+    "blocked_percentage": 83.33,
+    "category_breakdown": {
+      "SQL Injection (SQLi)": 1,
+      "Cross-Site Scripting (XSS)": 1,
+      "Path Traversal / LFI": 2,
+      "Malicious Scanner / Tool": 1
+    }
+  },
+  "verdicts": [
+    {
+      "request_id": "REQ-001",
+      "timestamp": "2026-11-17 05:29:31 UTC",
+      "client_ip": "192.168.1.105",
+      "method": "GET",
+      "path": "/api/v1/users",
+      "status_code": 200,
+      "action": "ALLOW",
+      "risk_score": 0.0,
+      "primary_category": "NONE",
+      "violations": [],
+      "rationale": "Clean request passed all Layer-7 firewall inspection checks."
+    },
+    {
+      "request_id": "REQ-002",
+      "timestamp": "2026-11-17 05:29:31 UTC",
+      "client_ip": "198.51.100.44",
+      "method": "GET",
+      "path": "/products/details",
+      "status_code": 403,
+      "action": "BLOCK",
+      "risk_score": 9.8,
+      "primary_category": "SQL Injection (SQLi)",
+      "violations": [
+        {
+          "rule_id": "WAF-SQLI-001",
+          "category": "SQL Injection (SQLi)",
+          "severity": "CRITICAL",
+          "score": 9.8,
+          "target": "QUERY",
+          "matched_string": "UNION SELECT",
+          "description": "SQL Injection syntax detection (UNION, boolean tautology, schema manipulation)"
+        }
+      ],
+      "rationale": "Request blocked due to 1 Layer-7 security policy violation(s)."
+    },
+    {
+      "request_id": "REQ-003",
+      "timestamp": "2026-11-17 05:29:31 UTC",
+      "client_ip": "203.0.113.89",
+      "method": "POST",
+      "path": "/feedback/submit",
+      "status_code": 403,
+      "action": "BLOCK",
+      "risk_score": 8.8,
+      "primary_category": "Cross-Site Scripting (XSS)",
+      "violations": [
+        {
+          "rule_id": "WAF-XSS-001",
+          "category": "Cross-Site Scripting (XSS)",
+          "severity": "HIGH",
+          "score": 8.8,
+          "target": "BODY",
+          "matched_string": "<script>",
+          "description": "Cross-Site Scripting (script tags, event handlers, DOM manipulation)"
+        }
+      ],
+      "rationale": "Request blocked due to 1 Layer-7 security policy violation(s)."
+    },
+    {
+      "request_id": "REQ-004",
+      "timestamp": "2026-11-17 05:29:31 UTC",
+      "client_ip": "185.220.101.5",
+      "method": "GET",
+      "path": "/download/view_receipt",
+      "status_code": 403,
+      "action": "BLOCK",
+      "risk_score": 8.5,
+      "primary_category": "Path Traversal / LFI",
+      "violations": [
+        {
+          "rule_id": "WAF-TRAV-001",
+          "category": "Path Traversal / LFI",
+          "severity": "HIGH",
+          "score": 8.5,
+          "target": "QUERY",
+          "matched_string": "../",
+          "description": "Local File Inclusion and directory traversal escape patterns"
+        }
+      ],
+      "rationale": "Request blocked due to 1 Layer-7 security policy violation(s)."
+    },
+    {
+      "request_id": "REQ-005",
+      "timestamp": "2026-11-17 05:29:31 UTC",
+      "client_ip": "45.154.255.12",
+      "method": "POST",
+      "path": "/admin/system_ping",
+      "status_code": 403,
+      "action": "BLOCK",
+      "risk_score": 9.9,
+      "primary_category": "Path Traversal / LFI",
+      "violations": [
+        {
+          "rule_id": "WAF-TRAV-001",
+          "category": "Path Traversal / LFI",
+          "severity": "HIGH",
+          "score": 8.5,
+          "target": "BODY",
+          "matched_string": "/etc/shadow",
+          "description": "Local File Inclusion and directory traversal escape patterns"
+        },
+        {
+          "rule_id": "WAF-CMDI-001",
+          "category": "OS Command Injection",
+          "severity": "CRITICAL",
+          "score": 9.9,
+          "target": "BODY",
+          "matched_string": "; cat",
+          "description": "Arbitrary OS command chaining via shell delimiters (; | & `$()``)"
+        }
+      ],
+      "rationale": "Request blocked due to 2 Layer-7 security policy violation(s)."
+    },
+    {
+      "request_id": "REQ-006",
+      "timestamp": "2026-11-17 05:29:31 UTC",
+      "client_ip": "91.240.118.17",
+      "method": "GET",
+      "path": "/login",
+      "status_code": 403,
+      "action": "BLOCK",
+      "risk_score": 7.5,
+      "primary_category": "Malicious Scanner / Tool",
+      "violations": [
+        {
+          "rule_id": "WAF-SCAN-001",
+          "category": "Malicious Scanner / Tool",
+          "severity": "MEDIUM",
+          "score": 7.5,
+          "target": "USER_AGENT",
+          "matched_string": "sqlmap",
+          "description": "Automated security scanning tools and vulnerability probers"
+        }
+      ],
+      "rationale": "Request blocked due to 1 Layer-7 security policy violation(s)."
+    }
+  ]
+}

